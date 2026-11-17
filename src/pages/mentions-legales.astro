@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+const h2 = 'mt-10 mb-3 font-display text-2xl text-ink-soft';
+---
+
+<Base title={`Mentions légales — ${site.name}`} description={`Mentions légales du site ${site.name}.`}>
+  <Header />
+  <main id="contenu" class="mx-auto max-w-[760px] px-5 pt-12 pb-24 leading-relaxed text-muted sm:px-8">
+    <h1 class="font-display text-[clamp(34px,4.2vw,52px)] text-ink-soft">Mentions légales</h1>
+
+    <h2 class={h2}>Éditeur du site</h2>
+    <p>{site.name} — [Forme juridique], [Adresse], SIRET [numéro].<br />Directeur de la publication : [Nom].<br />Contact : {site.email}</p>
+
+    <h2 class={h2}>Hébergement</h2>
+    <p>[Nom de l'hébergeur du VPS], [Adresse de l'hébergeur].</p>
+
+    <h2 class={h2}>Données personnelles</h2>
+    <p>
+      Les informations envoyées via le formulaire de contact servent uniquement à répondre à votre demande et ne sont
+      pas transmises à des tiers. Vous pouvez demander leur suppression à tout moment en écrivant à {site.email}.
+    </p>
+
+    <h2 class={h2}>Cookies</h2>
+    <p>Ce site n'utilise pas de cookies de suivi.</p>
+  </main>
+  <Footer />
+</Base>

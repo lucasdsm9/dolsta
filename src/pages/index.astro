@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Projects from '../components/Projects.astro';
+import Services from '../components/Services.astro';
+import Process from '../components/Process.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base>
+  <Header />
+  <main id="contenu" class="overflow-x-clip">
+    <Hero />
+    <Projects />
+    <Services />
+    <Process />
+    <Contact />
+  </main>
+  <Footer />
+</Base>

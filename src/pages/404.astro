@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Page introuvable — DOLSTA" noindex>
+  <Header />
+  <main id="contenu" class="mx-auto max-w-[640px] px-5 py-32 text-center">
+    <p class="font-logo text-[96px] leading-none font-extrabold text-accent">404</p>
+    <h1 class="mt-6 font-display text-4xl text-ink-soft">Cette page n'existe pas.</h1>
+    <a href="/" class="mt-8 inline-flex min-h-12 items-center rounded-full bg-blue px-6 font-medium text-white no-underline hover:brightness-90">Retour à l'accueil</a>
+  </main>
+  <Footer />
+</Base>

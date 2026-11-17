@@ -1,0 +1,69 @@
+---
+import type { ProjectVisual } from '../data/site';
+interface Props { visual: ProjectVisual }
+const { visual } = Astro.props;
+const labels: Record<ProjectVisual, string> = {
+  vitrine: 'Aperçu site vitrine avec galerie',
+  metier: 'Aperçu application métier',
+  flux: "Aperçu d'un flux automatisé",
+  seo: 'Aperçu site optimisé pour le référencement',
+  outil: 'Aperçu outil interne',
+};
+---
+
+<svg role="img" aria-label={labels[visual]} viewBox="0 0 300 230" class="absolute inset-0 h-full w-full">
+  {visual === 'vitrine' && (
+    <g transform="rotate(-4 150 105)">
+      <rect x="40" y="30" width="220" height="150" rx="10" fill="#FFFFFF"></rect>
+      <rect x="54" y="44" width="60" height="6" rx="3" fill="#2B2B30"></rect>
+      <rect x="54" y="62" width="58" height="58" rx="6" fill="#F7A9B8"></rect><rect x="121" y="62" width="58" height="58" rx="6" fill="#FFD3A8"></rect><rect x="188" y="62" width="58" height="58" rx="6" fill="#C9CCF7"></rect>
+      <rect x="54" y="128" width="40" height="5" rx="2.5" fill="#2B2B30"></rect><rect x="121" y="128" width="40" height="5" rx="2.5" fill="#2B2B30"></rect><rect x="188" y="128" width="40" height="5" rx="2.5" fill="#2B2B30"></rect>
+      <rect x="54" y="144" width="70" height="20" rx="10" fill="#4C4CF0"></rect>
+    </g>
+  )}
+  {visual === 'metier' && (
+    <g>
+      <rect x="30" y="34" width="240" height="150" rx="10" fill="#FFFFFF"></rect>
+      <rect x="30" y="34" width="52" height="150" rx="10" fill="#2B2B30"></rect>
+      <rect x="42" y="52" width="28" height="5" rx="2.5" fill="#FFFFFF"></rect><rect x="42" y="66" width="28" height="5" rx="2.5" fill="#6E6E7A"></rect><rect x="42" y="80" width="28" height="5" rx="2.5" fill="#6E6E7A"></rect>
+      <rect x="96" y="50" width="76" height="40" rx="6" fill="#E4E7FB"></rect><rect x="180" y="50" width="76" height="40" rx="6" fill="#FDE1E5"></rect>
+      <polyline points="98,164 128,140 152,150 182,118 210,128 252,100" fill="none" stroke="#4C4CF0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></polyline>
+    </g>
+  )}
+  {visual === 'flux' && (
+    <g>
+      <path d="M 100 96 C 120 96, 110 66, 130 66" fill="none" stroke="#6E6E7A" stroke-width="3"></path>
+      <path d="M 100 96 C 120 96, 110 126, 130 126" fill="none" stroke="#6E6E7A" stroke-width="3"></path>
+      <path d="M 200 66 C 220 66, 210 96, 230 96" fill="none" stroke="#6E6E7A" stroke-width="3"></path>
+      <path d="M 200 126 C 220 126, 210 96, 230 96" fill="none" stroke="#6E6E7A" stroke-width="3"></path>
+      <rect x="30" y="76" width="70" height="40" rx="10" fill="#FFFFFF"></rect>
+      <rect x="42" y="88" width="30" height="5" rx="2.5" fill="#2B2B30"></rect><rect x="42" y="99" width="44" height="4" rx="2" fill="#B9B9C4"></rect>
+      <rect x="130" y="46" width="70" height="40" rx="10" fill="#E8334A"></rect>
+      <rect x="142" y="58" width="34" height="5" rx="2.5" fill="#FFFFFF"></rect><rect x="142" y="69" width="44" height="4" rx="2" fill="#FFFFFF" opacity="0.7"></rect>
+      <rect x="130" y="106" width="70" height="40" rx="10" fill="#4C4CF0"></rect>
+      <rect x="142" y="118" width="34" height="5" rx="2.5" fill="#FFFFFF"></rect><rect x="142" y="129" width="44" height="4" rx="2" fill="#FFFFFF" opacity="0.7"></rect>
+      <rect x="230" y="76" width="44" height="40" rx="10" fill="#2FA36B"></rect>
+      <path d="M 242 96 L 249 103 L 262 89" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </g>
+  )}
+  {visual === 'seo' && (
+    <g transform="rotate(3 150 108)">
+      <rect x="36" y="28" width="228" height="160" rx="10" fill="#FFFFFF"></rect>
+      <rect x="50" y="42" width="30" height="5" rx="2.5" fill="#2B2B30"></rect><rect x="200" y="42" width="48" height="5" rx="2.5" fill="#B9B9C4"></rect>
+      <rect x="76" y="70" width="148" height="10" rx="5" fill="#2B2B30"></rect><rect x="96" y="88" width="108" height="10" rx="5" fill="#2B2B30"></rect>
+      <rect x="116" y="112" width="68" height="18" rx="9" fill="#4C4CF0"></rect>
+      <path d="M 48 176 C 90 140, 130 190, 170 160 S 230 150, 256 170" fill="none" stroke="#E8334A" stroke-width="10" stroke-linecap="round"></path>
+    </g>
+  )}
+  {visual === 'outil' && (
+    <g>
+      <rect x="34" y="32" width="232" height="150" rx="10" fill="#FFFFFF"></rect>
+      <rect x="48" y="48" width="90" height="6" rx="3" fill="#2B2B30"></rect>
+      <rect x="48" y="68" width="204" height="18" rx="4" fill="#F1F2F5"></rect>
+      <rect x="48" y="94" width="204" height="18" rx="4" fill="#FFFFFF" stroke="#ECECF0"></rect>
+      <rect x="48" y="120" width="204" height="18" rx="4" fill="#F1F2F5"></rect>
+      <rect x="48" y="146" width="204" height="18" rx="4" fill="#FFFFFF" stroke="#ECECF0"></rect>
+      <rect x="210" y="98" width="34" height="10" rx="5" fill="#2FA36B"></rect><rect x="210" y="150" width="34" height="10" rx="5" fill="#4C4CF0"></rect>
+    </g>
+  )}
+</svg>

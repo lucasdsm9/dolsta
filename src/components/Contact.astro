@@ -1,0 +1,111 @@
+---
+import { site } from '../data/site';
+const field =
+  'w-full rounded-2xl border border-[#D9D9E0] bg-white px-4 py-3 text-[15px] text-ink placeholder:text-[#8A8A94] focus:border-blue focus:outline-none';
+const label = 'mb-1.5 block text-sm font-medium text-ink';
+---
+
+<section id="contact" class="relative mx-4 scroll-mt-6 overflow-hidden rounded-[36px] bg-blush px-5 py-24 sm:px-6 sm:py-28">
+  <svg aria-hidden="true" viewBox="0 0 1400 560" preserveAspectRatio="xMidYMid slice" class="absolute inset-0 h-full w-full">
+    <defs>
+      <filter id="spray-cta" x="-30%" y="-30%" width="160%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" result="noise"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="30"></feDisplacementMap>
+      </filter>
+    </defs>
+    <g filter="url(#spray-cta)">
+      <path d="M -80 480 C 80 380, 160 560, 300 440 S 420 300, 520 400" fill="none" stroke="#E8334A" stroke-width="64" stroke-linecap="round"></path>
+      <path d="M 1180 -40 C 1240 80, 1360 60, 1460 200" fill="none" stroke="#F7A9B8" stroke-width="110" stroke-linecap="round" opacity="0.85"></path>
+    </g>
+  </svg>
+
+  <div class="relative mx-auto max-w-[860px] text-center">
+    <h2 class="font-display text-[clamp(38px,5.4vw,72px)] leading-[1.1] font-normal tracking-[-0.02em] text-ink-soft">Un projet en tête ? Parlons-en.</h2>
+    <p class="mx-auto mt-6 max-w-[480px] text-[17px] leading-relaxed text-muted">
+      Racontez-nous votre idée : on revient vers vous avec une première estimation, sans engagement.
+    </p>
+  </div>
+
+  <form
+    id="contact-form"
+    action="/api/contact"
+    method="post"
+    class="relative mx-auto mt-12 grid max-w-[640px] gap-5 rounded-[28px] bg-white/90 p-6 shadow-[0_20px_50px_rgba(232,51,74,0.12)] backdrop-blur sm:grid-cols-2 sm:p-8"
+    novalidate
+  >
+    <div>
+      <label for="cf-name" class={label}>Nom</label>
+      <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="120" class={field} />
+    </div>
+    <div>
+      <label for="cf-company" class={label}>Entreprise <span class="font-normal text-muted">(facultatif)</span></label>
+      <input id="cf-company" name="company" type="text" autocomplete="organization" maxlength="160" class={field} />
+    </div>
+    <div class="sm:col-span-2">
+      <label for="cf-email" class={label}>Email</label>
+      <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="200" class={field} />
+    </div>
+    <div class="sm:col-span-2">
+      <label for="cf-need" class={label}>Votre besoin</label>
+      <select id="cf-need" name="need" class={field}>
+        <option>Site vitrine</option>
+        <option>Application sur mesure</option>
+        <option>Référencement (SEO)</option>
+        <option>Maintenance & évolution</option>
+        <option>Autre</option>
+      </select>
+    </div>
+    <div class="sm:col-span-2">
+      <label for="cf-message" class={label}>Message</label>
+      <textarea id="cf-message" name="message" rows="5" required maxlength="5000" class={field}></textarea>
+    </div>
+    <!-- Champ piège anti-spam : invisible pour les humains -->
+    <div class="absolute -left-[9999px]" aria-hidden="true">
+      <label for="cf-website">Ne pas remplir</label>
+      <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="flex flex-wrap items-center gap-4 sm:col-span-2">
+      <button type="submit" class="inline-flex min-h-12 cursor-pointer items-center rounded-full bg-blue px-7 text-[15px] font-medium text-white transition hover:brightness-90 disabled:opacity-60">
+        Envoyer la demande
+      </button>
+      <a href={`mailto:${site.email}`} class="text-sm text-muted underline-offset-4 hover:text-blue">ou écrivez à {site.email}</a>
+    </div>
+    <p id="cf-status" role="status" aria-live="polite" class="text-sm sm:col-span-2"></p>
+  </form>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('cf-status');
+  if (form && status) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      button.disabled = true;
+      status.className = 'text-sm sm:col-span-2 text-muted';
+      status.textContent = 'Envoi en cours…';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || "L'envoi a échoué.");
+        form.reset();
+        status.className = 'text-sm sm:col-span-2 text-[#1E7A4E] font-medium';
+        status.textContent = 'Merci ! Votre demande est bien partie, on vous répond rapidement.';
+      } catch (err) {
+        status.className = 'text-sm sm:col-span-2 text-accent-ink font-medium';
+        status.textContent = (err as Error).message + ' Vous pouvez aussi nous écrire directement par email.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
+</script>

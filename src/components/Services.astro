@@ -1,0 +1,37 @@
+---
+import { services, type ServiceTheme } from '../data/site';
+
+const themes: Record<ServiceTheme, { card: string; title: string; text: string; list: string }> = {
+  lavender: { card: 'bg-lavender', title: 'text-ink', text: 'text-[#44444C]', list: 'text-ink' },
+  white: { card: 'bg-white border border-line shadow-[0_20px_40px_rgba(30,30,60,0.08)]', title: 'text-ink', text: 'text-[#44444C]', list: 'text-ink' },
+  red: { card: 'bg-accent-deep', title: 'text-white', text: 'text-white', list: 'text-white' },
+  night: { card: 'bg-night', title: 'text-white', text: 'text-[#D6D6DE]', list: 'text-white' },
+};
+// Alternance de position et d'inclinaison, comme des cartes posées sur une table
+const placement = [
+  'md:self-start md:-rotate-[1.2deg]',
+  'md:self-center md:rotate-[1.6deg] md:-mt-6',
+  'md:self-end md:-rotate-[1.8deg] md:-mt-6',
+  'md:self-center md:rotate-[1deg] md:-mt-6',
+];
+---
+
+<section id="services" class="scroll-mt-6 bg-paper-2 px-5 pt-24 pb-32 sm:px-6">
+  <h2 class="mb-16 text-center font-display text-[clamp(34px,4.2vw,56px)] font-normal tracking-[-0.01em] text-ink-soft">Nos services</h2>
+  <div class="mx-auto flex max-w-[1040px] flex-col gap-5 md:gap-0">
+    {services.map((s, i) => {
+      const t = themes[s.theme];
+      return (
+        <article class:list={['relative flex w-full flex-wrap gap-7 rounded-3xl px-7 py-9 sm:px-11 sm:py-10 md:w-[780px] transition-transform duration-300 hover:rotate-0', t.card, placement[i % placement.length]]} style={`z-index:${i + 1}`}>
+          <div class="min-w-0 flex-[1_1_300px]">
+            <h3 class:list={['mb-4 font-display text-[30px] font-normal sm:text-[34px]', t.title]}>{s.num} {s.title}</h3>
+            <p class:list={['max-w-[340px] text-[15px] leading-relaxed', t.text]}>{s.text}</p>
+          </div>
+          <ul class:list={['flex flex-[1_1_200px] flex-col gap-2 text-sm', t.list]}>
+            {s.items.map((it) => <li>{it}</li>)}
+          </ul>
+        </article>
+      );
+    })}
+  </div>
+</section>

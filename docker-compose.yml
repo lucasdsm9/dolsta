@@ -1,0 +1,17 @@
+# DOLSTA tourne derrière le nginx déjà présent sur le VPS (projet ~/app).
+# Pas de port ouvert : nginx joint ce conteneur par son nom ("dolsta") via le réseau app_app_network.
+services:
+  dolsta:
+    build:
+      context: .
+      args:
+        SITE_URL: https://${DOMAIN:-dolsta.fr}
+    container_name: dolsta
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - app_app_network
+
+networks:
+  app_app_network:
+    external: true

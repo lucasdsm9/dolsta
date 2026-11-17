@@ -1,0 +1,40 @@
+---
+import Logo from './Logo.astro';
+import { nav } from '../data/site';
+const left = nav.slice(0, 2);
+const right = nav.slice(2);
+const linkCls = 'py-3 text-sm text-ink no-underline transition-colors hover:text-blue';
+---
+
+<header class="relative z-30 mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-5 py-5 sm:px-8">
+  <nav aria-label="Navigation principale" class="hidden flex-1 gap-7 md:flex">
+    {left.map((l) => <a href={l.href} class={linkCls}>{l.label}</a>)}
+  </nav>
+  <Logo />
+  <nav aria-label="Navigation secondaire" class="hidden flex-1 justify-end gap-7 md:flex">
+    {right.map((l) => <a href={l.href} class={linkCls}>{l.label}</a>)}
+  </nav>
+
+  <!-- Menu mobile -->
+  <details class="group relative md:hidden">
+    <summary
+      class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-line bg-white [&::-webkit-details-marker]:hidden"
+      aria-label="Ouvrir le menu"
+    >
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path class="group-open:hidden" d="M4 7h16M4 12h16M4 17h16"></path>
+        <path class="hidden group-open:block" d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </summary>
+    <nav aria-label="Menu mobile" class="absolute right-0 mt-2 flex w-52 flex-col rounded-2xl border border-line bg-white p-2 shadow-xl">
+      {nav.map((l) => <a href={l.href} class="rounded-xl px-4 py-3 text-ink no-underline hover:bg-paper-2">{l.label}</a>)}
+    </nav>
+  </details>
+</header>
+
+<script>
+  // Ferme le menu mobile après un clic sur un lien
+  document.querySelectorAll('header details a').forEach((a) =>
+    a.addEventListener('click', () => a.closest('details')?.removeAttribute('open')),
+  );
+</script>

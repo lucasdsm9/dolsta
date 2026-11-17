@@ -1,0 +1,85 @@
+---
+const chip =
+  'inline-block align-middle w-[1.5em] h-[0.92em] rounded-[0.16em] overflow-hidden shadow-[0_10px_24px_rgba(20,20,40,0.18)] mx-[0.08em]';
+---
+
+<section class="relative -mt-[84px] overflow-hidden px-6 pt-[168px] pb-40 text-center">
+  <!-- Coups de spray décoratifs -->
+  <svg aria-hidden="true" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" class="absolute inset-0 -z-0 h-full w-full">
+    <defs>
+      <filter id="spray-hero" x="-30%" y="-30%" width="160%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" result="noise"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="34"></feDisplacementMap>
+        <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
+      </filter>
+      <filter id="soft-hero" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="40"></feGaussianBlur>
+      </filter>
+    </defs>
+    <g opacity="0.55" filter="url(#soft-hero)">
+      <path d="M -60 20 C 140 140, 40 300, 200 380 S 120 600, 40 760" fill="none" stroke="#F7A9B8" stroke-width="170" stroke-linecap="round"></path>
+      <path d="M 1080 -40 C 1180 90, 1320 40, 1420 180" fill="none" stroke="#F9C2CD" stroke-width="140" stroke-linecap="round"></path>
+    </g>
+    <g filter="url(#spray-hero)">
+      <path d="M -60 20 C 140 140, 40 300, 200 380 S 120 600, 40 760" fill="none" stroke="#F7A9B8" stroke-width="110" stroke-linecap="round" opacity="0.85"></path>
+      <path d="M 1100 -30 C 1180 80, 1300 50, 1400 170" fill="none" stroke="#F9C2CD" stroke-width="80" stroke-linecap="round" opacity="0.9"></path>
+      <path d="M 760 800 C 820 640, 900 640, 935 720 S 1030 820, 1080 670 S 1190 520, 1240 650 S 1370 760, 1500 560" fill="none" stroke="#E8334A" stroke-width="80" stroke-linecap="round"></path>
+      <circle cx="1470" cy="440" r="150" fill="#E8334A"></circle>
+    </g>
+  </svg>
+
+  <h1 class="relative mx-auto max-w-[1020px] font-display text-[clamp(40px,6.4vw,92px)] leading-[1.12] font-normal tracking-[-0.02em] text-ink-soft">
+    Des sites et des outils{' '}
+    <span class={`${chip} -rotate-[5deg]`}>
+      <svg role="img" aria-label="Fenêtre de code" viewBox="0 0 150 92" class="block h-full w-full">
+        <rect width="150" height="92" fill="#17171F"></rect>
+        <circle cx="12" cy="11" r="4" fill="#FF5F57"></circle><circle cx="24" cy="11" r="4" fill="#FEBC2E"></circle><circle cx="36" cy="11" r="4" fill="#28C840"></circle>
+        <rect x="14" y="28" width="44" height="6" rx="3" fill="#7B7BFF"></rect><rect x="64" y="28" width="30" height="6" rx="3" fill="#F7A9B8"></rect>
+        <rect x="26" y="42" width="72" height="6" rx="3" fill="#8B8BA0"></rect>
+        <rect x="26" y="56" width="38" height="6" rx="3" fill="#F7A9B8"></rect><rect x="70" y="56" width="44" height="6" rx="3" fill="#7B7BFF"></rect>
+        <rect x="14" y="70" width="24" height="6" rx="3" fill="#8B8BA0"></rect>
+      </svg>
+    </span>
+    {' '}qui font{' '}
+    <span class={`${chip} rotate-[4deg]`}>
+      <svg role="img" aria-label="Tableau de bord" viewBox="0 0 150 92" class="block h-full w-full">
+        <rect width="150" height="92" fill="#E4E7FB"></rect>
+        <rect width="30" height="92" fill="#4C4CF0"></rect>
+        <rect x="8" y="12" width="14" height="4" rx="2" fill="#FFFFFF"></rect><rect x="8" y="24" width="14" height="4" rx="2" fill="#A9A9FF"></rect><rect x="8" y="34" width="14" height="4" rx="2" fill="#A9A9FF"></rect>
+        <rect x="40" y="10" width="100" height="72" rx="6" fill="#FFFFFF"></rect>
+        <rect x="52" y="52" width="10" height="20" rx="2" fill="#C9CCF7"></rect><rect x="68" y="40" width="10" height="32" rx="2" fill="#C9CCF7"></rect><rect x="84" y="30" width="10" height="42" rx="2" fill="#4C4CF0"></rect><rect x="100" y="44" width="10" height="28" rx="2" fill="#C9CCF7"></rect><rect x="116" y="24" width="10" height="48" rx="2" fill="#E8334A"></rect>
+        <rect x="52" y="18" width="36" height="5" rx="2.5" fill="#2B2B30"></rect>
+      </svg>
+    </span>
+    {' '}avancer{' '}
+    <span class={`${chip} -rotate-[3deg]`}>
+      <svg role="img" aria-label="Résultats de recherche, premier rang" viewBox="0 0 150 92" class="block h-full w-full">
+        <rect width="150" height="92" fill="#F9C2CD"></rect>
+        <rect x="12" y="10" width="126" height="16" rx="8" fill="#FFFFFF"></rect>
+        <circle cx="22" cy="18" r="3.5" fill="none" stroke="#2B2B30" stroke-width="1.6"></circle>
+        <rect x="30" y="16" width="52" height="4" rx="2" fill="#B9B9C4"></rect>
+        <rect x="12" y="34" width="126" height="22" rx="5" fill="#FFFFFF"></rect>
+        <rect x="18" y="39" width="14" height="12" rx="3" fill="#E8334A"></rect>
+        <text x="25" y="48" font-size="9" fill="#FFFFFF" text-anchor="middle" font-family="sans-serif">1</text>
+        <rect x="38" y="39" width="58" height="5" rx="2.5" fill="#4C4CF0"></rect><rect x="38" y="47" width="70" height="4" rx="2" fill="#B9B9C4"></rect>
+        <path d="M 120 50 L 126 41 L 132 50" fill="none" stroke="#2FA36B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        <rect x="12" y="62" width="126" height="22" rx="5" fill="#FFFFFF" opacity="0.6"></rect>
+        <rect x="38" y="67" width="48" height="5" rx="2.5" fill="#8B8BA0"></rect><rect x="38" y="75" width="66" height="4" rx="2" fill="#B9B9C4"></rect>
+      </svg>
+    </span>
+    {' '}votre entreprise
+  </h1>
+
+  <p class="relative mx-auto mt-8 max-w-[560px] text-lg leading-relaxed text-muted">
+    Sites vitrines qui vous font trouver sur Google, applications sur mesure qui simplifient votre quotidien : on
+    développe les outils qui font gagner du temps à votre équipe.
+  </p>
+
+  <div class="relative mt-9 flex flex-wrap justify-center gap-3">
+    <a href="#contact" class="inline-flex min-h-12 items-center rounded-full border border-[#D9D9E0] bg-white px-6 text-[15px] font-medium text-ink no-underline transition hover:bg-[#F4F4F7]">Nous contacter</a>
+    <a href="#contact" class="inline-flex min-h-12 items-center gap-2 rounded-full bg-blue px-6 text-[15px] font-medium text-white no-underline transition hover:brightness-90">
+      Démarrer un projet
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
+</section>

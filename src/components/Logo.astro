@@ -1,0 +1,12 @@
+---
+import { site } from '../data/site';
+interface Props { as?: 'a' | 'span'; class?: string }
+const { as = 'a', class: cls = '' } = Astro.props;
+const Tag = as;
+---
+
+<Tag
+  href={as === 'a' ? '/' : undefined}
+  class:list={['font-logo text-[34px] leading-none font-extrabold tracking-[-0.03em] text-ink no-underline', cls]}
+  aria-label={as === 'a' ? `${site.name} — accueil` : undefined}
+>{site.name}</Tag>
