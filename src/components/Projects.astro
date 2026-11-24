@@ -7,6 +7,8 @@ import { projects } from '../data/site';
 const total = projects.length + 1;
 const wideFirst = total % 3 === 2;
 const wideCta = total % 3 === 1;
+// Capture dans un téléphone : la taille du téléphone vient du ratio de la capture (720×1297),
+// pas de l'image elle-même, pour un affichage identique partout (Safari iOS compris).
 ---
 
 <section id="projets" class="relative z-10 -mt-12 scroll-mt-6 rounded-t-[36px] bg-white shadow-[0_-18px_40px_rgba(232,51,74,0.10)]">
@@ -28,9 +30,22 @@ const wideCta = total % 3 === 1;
     {projects.map((p, i) => (
       <li class:list={['group flex flex-col overflow-hidden rounded-[24px] border border-line bg-white transition-shadow duration-300 hover:shadow-[0_20px_40px_rgba(30,30,60,0.10)]', wideFirst && i === 0 && 'lg:col-span-2 lg:flex-row']}>
         <div class:list={['relative aspect-[300/230] overflow-hidden', wideFirst && i === 0 && 'lg:aspect-auto lg:w-[56%] lg:shrink-0']} style={`background:${p.bg}`}>
-          <div class="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]">
-            <ProjectVisual visual={p.visual} />
-          </div>
+          {p.screenshot ? (
+            <div class="absolute top-[12%] left-1/2 box-content aspect-[720/1297] h-[118%] -translate-x-1/2 -rotate-[5deg] overflow-hidden rounded-[34px] border-[7px] border-ink bg-ink shadow-[0_24px_50px_rgba(120,60,20,0.28)] transition-transform duration-500 group-hover:-translate-y-2 group-hover:-rotate-[3deg]">
+              <img
+                src={p.screenshot.src}
+                alt={p.screenshot.alt}
+                width="720"
+                height="1297"
+                decoding="async"
+                class="block h-full w-full rounded-[27px] object-cover object-top"
+              />
+            </div>
+          ) : (
+            <div class="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]">
+              <ProjectVisual visual={p.visual} />
+            </div>
+          )}
           <span class="absolute top-4 left-4 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-ink">{p.tag}</span>
         </div>
         <div class:list={['flex flex-1 flex-col gap-3 p-6 sm:p-7', wideFirst && i === 0 && 'lg:justify-center lg:p-10']}>

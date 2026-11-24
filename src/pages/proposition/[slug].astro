@@ -1,0 +1,270 @@
+---
+// Page de vente personnalisée pour un prospect : /proposition/<slug>
+// Contenu dans src/data/propositions.ts. Page non référencée (noindex, hors sitemap).
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Contact from '../../components/Contact.astro';
+import { propositions, offer, type Proposition } from '../../data/propositions';
+
+export function getStaticPaths() {
+  return propositions.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+
+const { p } = Astro.props as { p: Proposition };
+
+const why = [
+  {
+    title: 'Être trouvé sur Google',
+    text: `Quand quelqu'un cherche « ${p.trade} ${p.city} », votre site peut apparaître à côté de votre fiche Google et renforcer votre présence.`,
+    icon: 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3',
+  },
+  {
+    title: "Rassurer avant l'appel",
+    text: 'Vos prestations, vos photos de chantier et vos avis clients réunis au même endroit : on vous fait confiance plus vite.',
+    icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4',
+  },
+  {
+    title: 'Recevoir des demandes',
+    text: "Un bouton d'appel et un formulaire de devis, accessibles 24h/24, même quand vous êtes sur un chantier.",
+    icon: 'M4 4h16v16H4zM22 6l-10 7L2 6',
+  },
+];
+
+const steps = [
+  {
+    title: 'On a préparé votre maquette',
+    text: 'À partir de vos informations publiques (page Facebook, fiche Google) : prestations, photos, avis. Vous ne nous devez rien pour cette maquette.',
+  },
+  {
+    title: 'Vous nous dites ce qui vous plaît',
+    text: "Un texte à reformuler, une photo à remplacer, une prestation à ajouter : vous nous faites part de vos retours, simplement.",
+  },
+  {
+    title: '7 jours de modifications',
+    text: 'Pendant 7 jours, on ajuste les textes, les éléments et les photos jusqu’à ce que le site vous ressemble.',
+  },
+  {
+    title: 'Mise en ligne',
+    text: 'On héberge votre site avec le Pack Tranquillité, ou on vous fournit un guide pour l’héberger vous-même.',
+  },
+];
+
+const check = 'M20 6 9 17l-5-5';
+---
+
+<Base
+  title={`Proposition pour ${p.business} — DOLSTA`}
+  description={`Le site imaginé par DOLSTA pour ${p.business}.`}
+  noindex
+>
+  <Header />
+  <main id="contenu" class="overflow-x-clip">
+    <!-- Accroche + aperçu -->
+    <section class="relative -mt-[84px] overflow-hidden px-5 pt-[150px] pb-24 sm:px-8">
+      <svg aria-hidden="true" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" class="absolute inset-0 h-full w-full">
+        <defs>
+          <filter id="spray-prop" x="-30%" y="-30%" width="160%" height="160%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" result="noise"></feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="34"></feDisplacementMap>
+            <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
+          </filter>
+        </defs>
+        <g filter="url(#spray-prop)">
+          <path d="M -60 40 C 120 160, 30 320, 160 420" fill="none" stroke="#F7A9B8" stroke-width="100" stroke-linecap="round" opacity="0.8"></path>
+          <path d="M 1120 -30 C 1200 90, 1320 60, 1420 180" fill="none" stroke="#F9C2CD" stroke-width="80" stroke-linecap="round" opacity="0.9"></path>
+          <circle cx="1480" cy="760" r="160" fill="#E8334A"></circle>
+        </g>
+      </svg>
+
+      <div class="relative mx-auto grid max-w-[1200px] items-center gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
+        <div>
+          <span class="inline-flex rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink">Proposition pour {p.business}</span>
+          <h1 class="mt-6 font-display text-[clamp(38px,5vw,68px)] leading-[1.08] font-normal tracking-[-0.02em] text-ink-soft">
+            Bonjour {p.firstName}, voici le site de {p.business}.
+          </h1>
+          <p class="mt-6 max-w-[520px] text-lg leading-relaxed text-muted">{p.intro}</p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href={p.siteUrl} class="inline-flex min-h-12 items-center gap-2 rounded-full bg-blue px-6 text-[15px] font-medium text-white no-underline transition hover:brightness-90">
+              Découvrir votre site
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+            </a>
+            <a href="#tarifs" data-open-tab="tarifs" class="inline-flex min-h-12 items-center rounded-full border border-[#D9D9E0] bg-white px-6 text-[15px] font-medium text-ink no-underline transition hover:bg-[#F4F4F7]">Voir les tarifs</a>
+          </div>
+        </div>
+
+        <!-- Aperçu cliquable : navigateur + téléphone -->
+        <a href={p.siteUrl} class="group relative block pb-10 no-underline" aria-label={`Ouvrir l'aperçu du site de ${p.business}`}>
+          <div class="overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_30px_70px_rgba(30,30,60,0.18)] transition-transform duration-500 group-hover:-translate-y-1">
+            <div class="flex items-center gap-3 border-b border-line bg-[#F4F4F7] px-4 py-3">
+              <span class="flex gap-1.5" aria-hidden="true"><span class="h-2.5 w-2.5 rounded-full bg-[#FF5F57]"></span><span class="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]"></span><span class="h-2.5 w-2.5 rounded-full bg-[#28C840]"></span></span>
+              <span class="min-w-0 flex-1 truncate rounded-full bg-white px-4 py-1.5 text-center text-xs text-muted">dolsta.fr{p.siteUrl}</span>
+            </div>
+            <img src={p.preview.desktop} alt={`Aperçu du site de ${p.business} sur ordinateur`} width="1440" height="900" class="block aspect-[1440/900] w-full object-cover object-top" />
+          </div>
+          <div class="absolute right-3 bottom-0 box-content aspect-[390/844] w-[26%] max-w-[170px] rotate-[4deg] overflow-hidden rounded-[26px] border-[6px] border-ink bg-ink shadow-[0_24px_50px_rgba(30,30,60,0.3)] transition-transform duration-500 group-hover:rotate-[2deg] sm:right-[-16px]">
+            <img src={p.preview.mobile} alt={`Aperçu du site de ${p.business} sur téléphone`} width="390" height="844" class="block h-full w-full rounded-[20px] object-cover object-top" />
+          </div>
+          <span class="absolute top-[42%] left-1/2 -translate-x-1/2 rounded-full bg-ink/85 px-5 py-2.5 text-sm font-medium text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">Voir le site en grand</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Pourquoi un site -->
+    <section class="bg-paper-2 px-5 py-24 sm:px-8">
+      <div class="mx-auto max-w-[1200px]">
+        <h2 class="max-w-[720px] font-display text-[clamp(32px,4vw,52px)] leading-[1.12] font-normal tracking-[-0.01em] text-ink-soft">Pourquoi un site pour {p.business} ?</h2>
+        <div class="mt-12 grid gap-5 md:grid-cols-3">
+          {why.map((w) => (
+            <div class="flex flex-col gap-4 rounded-[24px] border border-line bg-white p-7">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-lavender text-blue-ink" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d={w.icon}></path></svg>
+              </span>
+              <h3 class="font-display text-2xl font-normal text-ink">{w.title}</h3>
+              <p class="text-[15px] leading-relaxed text-muted">{w.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Onglets : démarche / tarifs -->
+    <section id="tarifs" class="scroll-mt-6 px-5 py-24 sm:px-8">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="flex flex-wrap items-end justify-between gap-6">
+          <h2 class="font-display text-[clamp(32px,4vw,52px)] leading-[1.12] font-normal tracking-[-0.01em] text-ink-soft">Comment ça se passe</h2>
+          <div role="tablist" aria-label="Démarche et tarifs" class="inline-flex rounded-full border border-line bg-paper-2 p-1.5">
+            <button type="button" role="tab" id="tab-demarche" aria-controls="panel-demarche" aria-selected="true" data-tab="demarche" class="tab min-h-11 cursor-pointer rounded-full px-5 text-[15px] font-medium">Notre démarche</button>
+            <button type="button" role="tab" id="tab-tarifs" aria-controls="panel-tarifs" aria-selected="false" data-tab="tarifs" tabindex="-1" class="tab min-h-11 cursor-pointer rounded-full px-5 text-[15px] font-medium">Tarifs</button>
+          </div>
+        </div>
+
+        <!-- Panneau : démarche -->
+        <div id="panel-demarche" role="tabpanel" aria-labelledby="tab-demarche" class="mt-12">
+          <ol class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {steps.map((s, i) => (
+              <li class="flex flex-col gap-3.5 rounded-[20px] border border-[#ECECF0] p-7">
+                <span class:list={['inline-flex h-11 w-11 items-center justify-center rounded-full text-[15px] font-semibold', i % 2 ? 'bg-lavender text-blue-ink' : 'bg-pink-wash text-accent-ink']} aria-hidden="true">0{i + 1}</span>
+                <h3 class="font-display text-2xl font-normal">{s.title}</h3>
+                <p class="text-sm leading-relaxed text-muted">{s.text}</p>
+              </li>
+            ))}
+          </ol>
+          <button type="button" data-open-tab="tarifs" class="mt-10 inline-flex min-h-12 cursor-pointer items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-medium text-white transition hover:brightness-125">
+            Voir les tarifs
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+          </button>
+        </div>
+
+        <!-- Panneau : tarifs -->
+        <div id="panel-tarifs" role="tabpanel" aria-labelledby="tab-tarifs" class="mt-12">
+          <div class="grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+            <!-- Le site -->
+            <div class="relative flex flex-col overflow-hidden rounded-[28px] bg-night p-8 text-white sm:p-10">
+              <svg aria-hidden="true" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" class="absolute inset-0 h-full w-full">
+                <defs>
+                  <filter id="spray-price" x="-30%" y="-30%" width="160%" height="160%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" result="noise"></feTurbulence>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="26"></feDisplacementMap>
+                  </filter>
+                </defs>
+                <g filter="url(#spray-price)">
+                  <path d="M 300 -40 C 320 30, 370 20, 390 70 S 430 110, 460 90" fill="none" stroke="#E8334A" stroke-width="40" stroke-linecap="round"></path>
+                </g>
+              </svg>
+              <div class="relative">
+                <p class="text-sm font-medium tracking-wide text-[#D6D6DE] uppercase">Votre site</p>
+                <p class="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1"><span class="font-display text-[clamp(52px,8vw,64px)] leading-none whitespace-nowrap">{offer.site.price}</span><span class="text-[15px] text-[#D6D6DE]">{offer.site.note}</span></p>
+                <ul class="mt-8 flex flex-col gap-3.5">
+                  {offer.site.items.map((it) => (
+                    <li class="flex gap-3 text-[15px] leading-relaxed"><svg class="mt-1 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F7A9B8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={check}></path></svg>{it}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <!-- Hébergement -->
+            <div class="flex flex-col gap-4">
+              <p class="text-[15px] font-medium text-ink">Puis, pour la mise en ligne, au choix :</p>
+              <div class="mt-2 grid flex-1 gap-6 sm:grid-cols-2 sm:gap-4">
+                {offer.hosting.map((h) => (
+                  <div class:list={['relative flex flex-col gap-4 rounded-[24px] bg-white p-7', h.recommended ? 'border-2 border-blue' : 'border border-line']}>
+                    {h.recommended && <span class="absolute -top-3 left-6 rounded-full bg-blue px-3 py-1 text-xs font-medium text-white">Recommandé</span>}
+                    <h3 class="font-display text-2xl font-normal text-ink">{h.name}</h3>
+                    <p class="flex items-baseline gap-1.5"><span class="font-display text-[40px] leading-none whitespace-nowrap text-ink">{h.price}</span>{h.period && <span class="text-[15px] text-muted">{h.period}</span>}</p>
+                    <p class="text-[15px] leading-relaxed text-muted">{h.text}</p>
+                    <ul class="mt-auto flex flex-col gap-2.5 pt-2">
+                      {h.items.map((it) => (
+                        <li class="flex gap-2.5 text-sm text-ink"><svg class="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4C4CF0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={check}></path></svg>{it}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <p class="mt-8 text-[15px] text-muted">
+            Exemple : <strong class="font-medium text-ink">{offer.site.price}</strong> à la commande, puis <strong class="font-medium text-ink">{offer.hosting[0].price} {offer.hosting[0].period}</strong> avec le {offer.hosting[0].name}.
+          </p>
+          <a href="#contact" class="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-blue px-6 text-[15px] font-medium text-white no-underline transition hover:brightness-90">
+            Je veux ce site
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Contact
+      title={`Ce site vous plaît, ${p.firstName} ?`}
+      text="Dites-nous ce que vous aimeriez changer, ou réservez votre site : on vous répond rapidement."
+      company={p.business}
+      message={`Bonjour, le site proposé pour ${p.business} m'intéresse.`}
+      source={`proposition ${p.slug}`}
+      submitLabel="Envoyer ma réponse"
+    />
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .tab { color: #4e4e57; }
+  .tab[aria-selected='true'] { background: #2b2b30; color: #fff; }
+  .tab:not([aria-selected='true']):hover { color: #2b2b30; }
+</style>
+
+<script>
+  // Onglets « Notre démarche » / « Tarifs ». Sans JavaScript, les deux panneaux restent visibles.
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+  const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')!)!);
+
+  function select(name: string, focus = false) {
+    tabs.forEach((t, i) => {
+      const on = t.dataset.tab === name;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      panels[i].hidden = !on;
+      if (on && focus) t.focus();
+    });
+  }
+
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t.dataset.tab!));
+    t.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      select(next.dataset.tab!, true);
+    });
+  });
+
+  // Liens « Voir les tarifs » : ouvrent l'onglet Tarifs et défilent jusqu'à la section
+  document.querySelectorAll<HTMLElement>('[data-open-tab]').forEach((el) =>
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      select(el.dataset.openTab!);
+      document.getElementById('tarifs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', '#tarifs');
+    }),
+  );
+
+  select(location.hash === '#tarifs' ? 'tarifs' : 'demarche');
+</script>

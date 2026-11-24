@@ -13,18 +13,23 @@ export const site = {
   year: new Date().getFullYear(),
 };
 
+// Liens du menu, dans l'ordre des sections de la page
 export const nav = [
+  { label: 'Réalisations', href: '/#projets' },
   { label: 'Services', href: '/#services' },
-  { label: 'Projets', href: '/#projets' },
-  { label: 'Process', href: '/#process' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Notre méthode', href: '/#process' },
 ];
+
+// Bouton mis en avant à droite du menu
+export const navCta = { label: 'Nous contacter', href: '/#contact' };
 
 export type ProjectVisual = 'rendezvous' | 'vitrine' | 'metier' | 'flux' | 'seo' | 'outil';
 
 // Pour ajouter un projet : copie un bloc, change les textes.
 // visual = illustration utilisée (voir ProjectVisual.astro), bg = couleur de fond de la carte.
 // url est facultatif : sans url, la carte n'a pas de lien.
+// screenshot (facultatif) : capture d'écran mobile placée dans public/projets/,
+// affichée dans un téléphone à la place de l'illustration.
 export const projects: {
   name: string;
   tag: string;
@@ -32,6 +37,7 @@ export const projects: {
   url?: string;
   bg: string;
   visual: ProjectVisual;
+  screenshot?: { src: string; alt: string };
 }[] = [
   {
     name: 'Rubea',
@@ -41,6 +47,10 @@ export const projects: {
     url: 'https://rubea.fr',
     bg: '#FFE8D6',
     visual: 'rendezvous',
+    screenshot: {
+      src: '/projets/rubea-mobile.webp',
+      alt: 'Page de réservation Rubea sur mobile : choix des prestations et bouton « Prendre rendez-vous »',
+    },
   },
 ];
 

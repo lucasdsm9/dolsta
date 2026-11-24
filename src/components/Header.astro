@@ -1,22 +1,37 @@
 ---
 import Logo from './Logo.astro';
-import { nav } from '../data/site';
+import { nav, navCta } from '../data/site';
+// Logo au centre : les 2 premiers liens à gauche, le reste à droite avec le bouton contact
 const left = nav.slice(0, 2);
 const right = nav.slice(2);
-const linkCls = 'py-3 text-sm text-ink no-underline transition-colors hover:text-blue';
+const linkCls = 'whitespace-nowrap rounded-full px-4 py-2.5 text-[15px] text-ink no-underline transition-colors hover:bg-white/70 hover:text-blue';
+const ctaCls =
+  'inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-full bg-blue px-5 text-[15px] font-medium text-white no-underline transition hover:brightness-90';
 ---
 
-<header class="relative z-30 mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-5 py-5 sm:px-8">
-  <nav aria-label="Navigation principale" class="hidden flex-1 gap-7 md:flex">
+<header class="relative z-30 mx-auto grid max-w-[1280px] grid-cols-[1fr_auto_1fr] items-center gap-6 px-5 py-5 sm:px-8">
+  <!-- Gauche : premiers liens (grand écran) -->
+  <nav aria-label="Navigation principale" class="hidden items-center gap-1 justify-self-start lg:flex">
     {left.map((l) => <a href={l.href} class={linkCls}>{l.label}</a>)}
   </nav>
-  <Logo />
-  <nav aria-label="Navigation secondaire" class="hidden flex-1 justify-end gap-7 md:flex">
-    {right.map((l) => <a href={l.href} class={linkCls}>{l.label}</a>)}
-  </nav>
+  <span class="lg:hidden" aria-hidden="true"></span>
+
+  <!-- Centre : logo -->
+  <Logo class="justify-self-center" />
+
+  <!-- Droite : derniers liens + bouton contact (grand écran) -->
+  <div class="hidden items-center gap-1 justify-self-end lg:flex">
+    <nav aria-label="Navigation secondaire" class="flex items-center gap-1">
+      {right.map((l) => <a href={l.href} class={linkCls}>{l.label}</a>)}
+    </nav>
+    <a href={navCta.href} class:list={[ctaCls, 'ml-3']}>
+      {navCta.label}
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
 
   <!-- Menu mobile -->
-  <details class="group relative md:hidden">
+  <details class="group relative justify-self-end lg:hidden">
     <summary
       class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-line bg-white [&::-webkit-details-marker]:hidden"
       aria-label="Ouvrir le menu"
@@ -26,8 +41,9 @@ const linkCls = 'py-3 text-sm text-ink no-underline transition-colors hover:text
         <path class="hidden group-open:block" d="M6 6l12 12M18 6L6 18"></path>
       </svg>
     </summary>
-    <nav aria-label="Menu mobile" class="absolute right-0 mt-2 flex w-52 flex-col rounded-2xl border border-line bg-white p-2 shadow-xl">
+    <nav aria-label="Menu mobile" class="absolute right-0 mt-2 flex w-60 flex-col rounded-2xl border border-line bg-white p-2 shadow-xl">
       {nav.map((l) => <a href={l.href} class="rounded-xl px-4 py-3 text-ink no-underline hover:bg-paper-2">{l.label}</a>)}
+      <a href={navCta.href} class:list={[ctaCls, 'mt-2 justify-center']}>{navCta.label}</a>
     </nav>
   </details>
 </header>

@@ -51,6 +51,25 @@ Dans `src/data/site.ts`, copie le bloc de Rubea dans `projects` et change les te
 `visual` choisit l'illustration : `rendezvous`, `vitrine`, `metier`, `flux`, `seo` ou `outil`.
 La carte « Votre projet pourrait être le prochain » reste toujours en dernier.
 
+## Propositions pour les prospects
+
+Chaque prospect a deux pages, **non référencées sur Google** (noindex, hors sitemap) :
+
+- `dolsta.fr/<slug>` : la maquette de son site, avec un bandeau « Maquette réalisée par DOLSTA » et un bouton « Voir l'offre » ;
+- `dolsta.fr/proposition/<slug>` : la page de vente (aperçu cliquable, pourquoi un site, démarche, tarifs, formulaire pré-rempli).
+
+Exemple : `/martel-elec` et `/proposition/martel-elec`.
+
+Ajouter un prospect :
+
+1. Maquette : `src/pages/<slug>/index.astro` (copier `martel-elec`), images dans `public/<slug>/img/`.
+2. Captures de l'aperçu : `public/propositions/<slug>-desktop.webp` (1440×900) et `<slug>-mobile.webp` (390×844).
+3. Un bloc dans `src/data/propositions.ts` (nom, prénom, métier, ville, phrase d'accroche).
+4. Ajouter `'/<slug>'` dans `PRIVATE` de `astro.config.mjs`.
+
+Les tarifs (299 €, Pack Tranquillité…) sont dans `offer`, en bas de `src/data/propositions.ts`.
+Les demandes envoyées depuis une proposition arrivent avec l'objet « [Proposition] … ».
+
 ## Formulaire de contact (Gmail)
 
 1. Active la validation en deux étapes sur ton compte Google.

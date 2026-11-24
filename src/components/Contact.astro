@@ -1,5 +1,23 @@
 ---
 import { site } from '../data/site';
+
+// Valeurs par défaut = page d'accueil. Les pages de proposition les personnalisent.
+interface Props {
+  title?: string;
+  text?: string;
+  company?: string;
+  message?: string;
+  source?: string; // ex. « proposition martel-elec », ajouté au mail reçu
+  submitLabel?: string;
+}
+const {
+  title = 'Un projet en tête ? Parlons-en.',
+  text = 'Racontez-nous votre idée : on revient vers vous avec une première estimation, sans engagement.',
+  company = '',
+  message = '',
+  source = '',
+  submitLabel = 'Envoyer la demande',
+} = Astro.props;
 const field =
   'w-full rounded-2xl border border-[#D9D9E0] bg-white px-4 py-3 text-[15px] text-ink placeholder:text-[#8A8A94] focus:border-blue focus:outline-none';
 const label = 'mb-1.5 block text-sm font-medium text-ink';
@@ -20,9 +38,9 @@ const label = 'mb-1.5 block text-sm font-medium text-ink';
   </svg>
 
   <div class="relative mx-auto max-w-[860px] text-center">
-    <h2 class="font-display text-[clamp(38px,5.4vw,72px)] leading-[1.1] font-normal tracking-[-0.02em] text-ink-soft">Un projet en tête ? Parlons-en.</h2>
+    <h2 class="font-display text-[clamp(38px,5.4vw,72px)] leading-[1.1] font-normal tracking-[-0.02em] text-ink-soft">{title}</h2>
     <p class="mx-auto mt-6 max-w-[480px] text-[17px] leading-relaxed text-muted">
-      Racontez-nous votre idée : on revient vers vous avec une première estimation, sans engagement.
+      {text}
     </p>
   </div>
 
@@ -39,7 +57,7 @@ const label = 'mb-1.5 block text-sm font-medium text-ink';
     </div>
     <div>
       <label for="cf-company" class={label}>Entreprise <span class="font-normal text-muted">(facultatif)</span></label>
-      <input id="cf-company" name="company" type="text" autocomplete="organization" maxlength="160" class={field} />
+      <input id="cf-company" name="company" type="text" autocomplete="organization" maxlength="160" value={company} class={field} />
     </div>
     <div class="sm:col-span-2">
       <label for="cf-email" class={label}>Email</label>
@@ -57,8 +75,9 @@ const label = 'mb-1.5 block text-sm font-medium text-ink';
     </div>
     <div class="sm:col-span-2">
       <label for="cf-message" class={label}>Message</label>
-      <textarea id="cf-message" name="message" rows="5" required maxlength="5000" class={field}></textarea>
+      <textarea id="cf-message" name="message" rows="5" required maxlength="5000" class={field}>{message}</textarea>
     </div>
+    {source && <input type="hidden" name="source" value={source} />}
     <!-- Champ piège anti-spam : invisible pour les humains -->
     <div class="absolute -left-[9999px]" aria-hidden="true">
       <label for="cf-website">Ne pas remplir</label>
@@ -67,7 +86,7 @@ const label = 'mb-1.5 block text-sm font-medium text-ink';
 
     <div class="flex flex-wrap items-center gap-4 sm:col-span-2">
       <button type="submit" class="inline-flex min-h-12 cursor-pointer items-center rounded-full bg-blue px-7 text-[15px] font-medium text-white transition hover:brightness-90 disabled:opacity-60">
-        Envoyer la demande
+        {submitLabel}
       </button>
       {site.email && (
         <a href={`mailto:${site.email}`} class="text-sm text-muted underline-offset-4 hover:text-blue">ou écrivez à {site.email}</a>

@@ -54,6 +54,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const email = clean(data.email, 200);
   const need = clean(data.need, 80);
   const message = clean(data.message, 5000);
+  const source = clean(data.source, 120);
 
   if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return json({ error: 'Merci de remplir votre nom, un email valide et votre message.' }, 400);
@@ -65,13 +66,13 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json({ error: "Le formulaire n'est pas encore configuré." }, 500);
   }
 
-  const text = `Nom : ${name}\nEntreprise : ${company || '—'}\nEmail : ${email}\nBesoin : ${need}\n\n${message}`;
+  const text = `Nom : ${name}\nEntreprise : ${company || '—'}\nEmail : ${email}\nBesoin : ${need}${source ? `\nProvenance : ${source}` : ''}\n\n${message}`;
   try {
     await transporter.sendMail({
       from: env('SMTP_FROM') || env('SMTP_USER'),
       to,
       replyTo: `"${name.replace(/"/g, '')}" <${email}>`,
-      subject: `[Site] ${need || 'Nouvelle demande'} — ${name}`,
+      subject: `${source ? '[Proposition] ' : '[Site] '}${need || 'Nouvelle demande'} — ${company || name}`,
       text,
       html: `<pre style="font-family:system-ui,sans-serif;white-space:pre-wrap">${escapeHtml(text)}</pre>`,
     });

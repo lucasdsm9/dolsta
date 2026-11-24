@@ -1,7 +1,7 @@
 ---
 import Logo from './Logo.astro';
-import { nav, site } from '../data/site';
-const links = [...nav.slice(0, 3), { label: 'Mentions légales', href: '/mentions-legales' }];
+import { nav, navCta, site } from '../data/site';
+const links = [...nav, { label: 'Contact', href: navCta.href }, { label: 'Mentions légales', href: '/mentions-legales' }];
 ---
 
 <footer class="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-5 px-5 pt-12 pb-10 text-sm text-muted sm:px-8">
