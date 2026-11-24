@@ -69,7 +69,9 @@ const label = 'mb-1.5 block text-sm font-medium text-ink';
       <button type="submit" class="inline-flex min-h-12 cursor-pointer items-center rounded-full bg-blue px-7 text-[15px] font-medium text-white transition hover:brightness-90 disabled:opacity-60">
         Envoyer la demande
       </button>
-      <a href={`mailto:${site.email}`} class="text-sm text-muted underline-offset-4 hover:text-blue">ou écrivez à {site.email}</a>
+      {site.email && (
+        <a href={`mailto:${site.email}`} class="text-sm text-muted underline-offset-4 hover:text-blue">ou écrivez à {site.email}</a>
+      )}
     </div>
     <p id="cf-status" role="status" aria-live="polite" class="text-sm sm:col-span-2"></p>
   </form>
@@ -102,7 +104,7 @@ const label = 'mb-1.5 block text-sm font-medium text-ink';
         status.textContent = 'Merci ! Votre demande est bien partie, on vous répond rapidement.';
       } catch (err) {
         status.className = 'text-sm sm:col-span-2 text-accent-ink font-medium';
-        status.textContent = (err as Error).message + ' Vous pouvez aussi nous écrire directement par email.';
+        status.textContent = (err as Error).message + ' Merci de réessayer dans quelques instants.';
       } finally {
         button.disabled = false;
       }

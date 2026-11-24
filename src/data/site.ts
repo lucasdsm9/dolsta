@@ -8,8 +8,8 @@ export const site = {
   title: 'DOLSTA — Sites vitrines, applications sur mesure et référencement',
   description:
     "Agence de développement : sites vitrines qui vous font trouver sur Google et applications sur mesure qui simplifient le quotidien des entreprises.",
-  email: 'contact@dolsta.fr', // [À REMPLACER]
-  city: '[Ville, France]', // [À REMPLACER]
+  // Laisse vide tant que l'adresse n'existe pas : elle ne s'affiche nulle part.
+  email: '',
   year: new Date().getFullYear(),
 };
 
@@ -20,14 +20,28 @@ export const nav = [
   { label: 'Contact', href: '/#contact' },
 ];
 
-export type ProjectVisual = 'vitrine' | 'metier' | 'flux' | 'seo' | 'outil';
+export type ProjectVisual = 'rendezvous' | 'vitrine' | 'metier' | 'flux' | 'seo' | 'outil';
 
-export const projects: { name: string; tag: string; bg: string; visual: ProjectVisual }[] = [
-  { name: '[Nom du projet]', tag: 'Site vitrine', bg: '#FCE3D3', visual: 'vitrine' },
-  { name: '[Nom du projet]', tag: 'Application métier', bg: '#E4E7FB', visual: 'metier' },
-  { name: '[Nom du projet]', tag: 'Automatisation', bg: '#24242B', visual: 'flux' },
-  { name: '[Nom du projet]', tag: 'Refonte & SEO', bg: '#F9C2CD', visual: 'seo' },
-  { name: '[Nom du projet]', tag: 'Outil interne', bg: '#DDF1E6', visual: 'outil' },
+// Pour ajouter un projet : copie un bloc, change les textes.
+// visual = illustration utilisée (voir ProjectVisual.astro), bg = couleur de fond de la carte.
+// url est facultatif : sans url, la carte n'a pas de lien.
+export const projects: {
+  name: string;
+  tag: string;
+  description: string;
+  url?: string;
+  bg: string;
+  visual: ProjectVisual;
+}[] = [
+  {
+    name: 'Rubea',
+    tag: 'Application SaaS',
+    description:
+      "Plateforme de prise de rendez-vous en ligne pour les salons et praticiens : page de réservation, agenda, rappels par email et abonnement intégré.",
+    url: 'https://rubea.fr',
+    bg: '#FFE8D6',
+    visual: 'rendezvous',
+  },
 ];
 
 export type ServiceTheme = 'lavender' | 'white' | 'red' | 'night';

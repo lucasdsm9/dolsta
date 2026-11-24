@@ -6,25 +6,51 @@ import { site } from '../data/site';
 const h2 = 'mt-10 mb-3 font-display text-2xl text-ink-soft';
 ---
 
-<Base title={`Mentions légales — ${site.name}`} description={`Mentions légales du site ${site.name}.`}>
+<!--
+  Mentions provisoires : DOLSTA n'est pas encore immatriculée.
+  Une fois la structure créée, compléter "Éditeur du site" avec :
+  forme juridique, adresse, SIRET (ou RCS + capital), nom du directeur de la publication, email.
+-->
+<Base title={`Mentions légales — ${site.name}`} description={`Mentions légales et politique de confidentialité du site ${site.name}.`}>
   <Header />
   <main id="contenu" class="mx-auto max-w-[760px] px-5 pt-12 pb-24 leading-relaxed text-muted sm:px-8">
     <h1 class="font-display text-[clamp(34px,4.2vw,52px)] text-ink-soft">Mentions légales</h1>
 
     <h2 class={h2}>Éditeur du site</h2>
-    <p>{site.name} — [Forme juridique], [Adresse], SIRET [numéro].<br />Directeur de la publication : [Nom].<br />Contact : {site.email}</p>
+    <p>
+      Le site dolsta.fr est édité à titre personnel, dans l'attente de l'immatriculation de l'activité {site.name}.
+      Les informations d'identification de l'éditeur ont été communiquées à l'hébergeur, conformément à l'article 6
+      de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.
+    </p>
+    <p class="mt-3">Pour toute question, vous pouvez utiliser le <a href="/#contact" class="text-blue underline underline-offset-4">formulaire de contact</a>.</p>
 
     <h2 class={h2}>Hébergement</h2>
-    <p>[Nom de l'hébergeur du VPS], [Adresse de l'hébergeur].</p>
+    <p>
+      OVH SAS<br />
+      2 rue Kellermann, 59100 Roubaix, France<br />
+      <a href="https://www.ovhcloud.com" class="text-blue underline underline-offset-4" rel="noopener">www.ovhcloud.com</a>
+    </p>
+
+    <h2 class={h2}>Propriété intellectuelle</h2>
+    <p>
+      Les textes, illustrations et éléments graphiques de ce site sont la propriété de l'éditeur, sauf mention
+      contraire. Toute reproduction sans autorisation est interdite.
+    </p>
 
     <h2 class={h2}>Données personnelles</h2>
     <p>
-      Les informations envoyées via le formulaire de contact servent uniquement à répondre à votre demande et ne sont
-      pas transmises à des tiers. Vous pouvez demander leur suppression à tout moment en écrivant à {site.email}.
+      Les informations envoyées via le formulaire de contact (nom, entreprise, email, besoin, message) servent
+      uniquement à répondre à votre demande. Elles sont transmises par email à l'éditeur, ne sont ni revendues ni
+      transmises à des tiers, et sont conservées au maximum 3 ans après le dernier échange.
+    </p>
+    <p class="mt-3">
+      Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données via le{' '}
+      <a href="/#contact" class="text-blue underline underline-offset-4">formulaire de contact</a>. Vous pouvez
+      également introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" class="text-blue underline underline-offset-4" rel="noopener">www.cnil.fr</a>).
     </p>
 
     <h2 class={h2}>Cookies</h2>
-    <p>Ce site n'utilise pas de cookies de suivi.</p>
+    <p>Ce site n'utilise aucun cookie de suivi ni outil de mesure d'audience. Les polices sont hébergées sur le site lui-même.</p>
   </main>
   <Footer />
 </Base>

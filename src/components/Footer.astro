@@ -9,5 +9,5 @@ const links = [...nav.slice(0, 3), { label: 'Mentions légales', href: '/mention
   <nav aria-label="Pied de page" class="flex flex-wrap gap-6">
     {links.map((l) => <a href={l.href} class="py-3 text-ink no-underline hover:text-blue">{l.label}</a>)}
   </nav>
-  <span>© {site.year} {site.name} · {site.city}</span>
+  <span>© {site.year} {site.name}</span>
 </footer>

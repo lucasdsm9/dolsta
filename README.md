@@ -1,6 +1,6 @@
 # DOLSTA — site vitrine
 
-Astro + Tailwind CSS, formulaire de contact par SMTP, déploiement Docker + Caddy (HTTPS automatique).
+Astro + Tailwind CSS, formulaire de contact par SMTP, déploiement Docker derrière nginx.
 
 ## Modifier le contenu
 
@@ -13,7 +13,8 @@ Les remplacer suffit : pas besoin de toucher aux composants.
 | `src/components/` | Sections de la page (Hero, Projets, Services, Process, Contact…) |
 | `src/styles/global.css` | Couleurs et polices (bloc `@theme`) |
 | `src/pages/api/contact.ts` | Envoi du formulaire par email |
-| `src/pages/mentions-legales.astro` | Mentions légales (à compléter) |
+| `src/pages/mentions-legales.astro` | Mentions légales (provisoires : à compléter une fois la structure créée) |
+| `public/og-image.png` | Image affichée quand le lien est partagé (LinkedIn, WhatsApp…) |
 
 ## En local
 
@@ -32,24 +33,30 @@ Build de production : `npm run build` puis `node --env-file=.env ./dist/server/e
 
 ## Déployer sur le VPS
 
-Prérequis : Docker + Docker Compose sur le VPS, et un enregistrement DNS **A** (`dolsta.fr` et `www.dolsta.fr`) qui pointe vers l'IP du VPS. Ports 80 et 443 ouverts.
+Le site tourne derrière le **nginx déjà présent** sur le VPS (projet `~/app`) : le conteneur `dolsta` rejoint le réseau Docker `app_app_network`, et `nginx/dolsta.conf` dit à nginx d'envoyer `dolsta.fr` vers lui.
 
-```bash
-# sur le VPS
-git clone <ton-repo> dolsta && cd dolsta
-cp .env.example .env && nano .env     # DOMAIN + SMTP
-docker compose up -d --build
-```
+1. DNS : enregistrements **A** `dolsta.fr` et `www.dolsta.fr` → `54.37.159.172` (supprimer les A/AAAA par défaut d'OVH).
+2. Envoyer le projet : `rsync -av --exclude node_modules --exclude dist --exclude .astro --exclude .env ./ debian@54.37.159.172:~/dolsta/`
+3. Sur le VPS : `cd ~/dolsta && cp .env.example .env && nano .env` puis `docker compose up -d --build`
+4. Certificat (coupe nginx ~30 s) : `cd ~/app && docker compose stop nginx && sudo certbot certonly --standalone -d dolsta.fr -d www.dolsta.fr; docker compose start nginx`
+5. `cp ~/dolsta/nginx/dolsta.conf ~/app/nginx/`, ajouter le volume `./nginx/dolsta.conf:/etc/nginx/conf.d/dolsta.conf:ro` au service nginx de `~/app/docker-compose.yml`, puis `docker compose up -d nginx`.
 
-Caddy récupère le certificat HTTPS tout seul au premier démarrage.
+Mettre à jour le site ensuite : relancer le `rsync` depuis le Mac, puis sur le VPS `cd ~/dolsta && docker compose up -d --build`.
 
-Mettre à jour après une modification :
+Logs : `docker logs -f dolsta`.
 
-```bash
-git pull && docker compose up -d --build
-```
+## Ajouter un projet
 
-Voir les logs : `docker compose logs -f web`.
+Dans `src/data/site.ts`, copie le bloc de Rubea dans `projects` et change les textes.
+`visual` choisit l'illustration : `rendezvous`, `vitrine`, `metier`, `flux`, `seo` ou `outil`.
+La carte « Votre projet pourrait être le prochain » reste toujours en dernier.
+
+## Formulaire de contact (Gmail)
+
+1. Active la validation en deux étapes sur ton compte Google.
+2. Crée un mot de passe d'application sur https://myaccount.google.com/apppasswords (nom : `dolsta`).
+3. Sur le VPS : `nano ~/dolsta/.env`, remplis `SMTP_USER`, `SMTP_PASS` (les 16 lettres, sans espaces), `SMTP_FROM` et `CONTACT_TO`.
+4. `cd ~/dolsta && docker compose up -d` pour recharger la config.
 
 ## SEO déjà en place
 
