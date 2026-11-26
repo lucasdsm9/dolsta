@@ -10,6 +10,10 @@ export const site = {
     "Agence de développement : sites vitrines qui vous font trouver sur Google et applications sur mesure qui simplifient le quotidien des entreprises.",
   // Laisse vide tant que l'adresse n'existe pas : elle ne s'affiche nulle part.
   email: '',
+  region: 'Hauts-de-France',
+  // Affiché UNIQUEMENT sur les pages de proposition (jamais sur l'accueil),
+  // et assemblé en JavaScript pour limiter la récupération par les robots.
+  phone: '07 88 19 99 76',
   year: new Date().getFullYear(),
 };
 

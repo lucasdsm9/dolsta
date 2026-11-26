@@ -12,7 +12,6 @@
 export type Proposition = {
   slug: string;
   business: string; // nom de l'entreprise
-  firstName: string; // prénom du gérant, pour le « Bonjour … »
   trade: string; // métier, ex. « électricien »
   city: string; // ville principale, pour l'exemple de recherche Google
   intro: string; // phrase d'accroche personnalisée
@@ -24,11 +23,10 @@ export const propositions: Proposition[] = [
   {
     slug: 'martel-elec',
     business: 'Martel Électricité',
-    firstName: 'Léo',
     trade: 'électricien',
     city: 'Aire-sur-la-Lys',
     intro:
-      "Vos clients vous notent 5,0/5 sur Google, mais Martel Électricité n'a pas encore de site internet. Alors on vous en a préparé un, à partir de votre page Facebook et de votre fiche Google. Il est prêt : jetez-y un œil.",
+      "Vos clients vous notent 5,0/5 sur Google : votre travail parle pour vous. Avec un site à votre image, vous gagnez en visibilité auprès de ceux qui ne vous connaissent pas encore et vous affichez une image vraiment professionnelle. On vous l'a déjà préparé, à partir de votre page Facebook et de votre fiche Google : découvrez-le.",
     siteUrl: '/martel-elec/',
     preview: {
       desktop: '/propositions/martel-elec-desktop.webp',
@@ -51,19 +49,33 @@ export const offer = {
   hosting: [
     {
       name: 'Pack Tranquillité',
-      price: '30 €',
+      price: '29 €',
       period: '/ mois',
       recommended: true,
-      text: "On héberge et on met en ligne votre site : vous n'avez rien à gérer.",
-      items: ['Hébergement de votre site', 'Mise en ligne par nos soins', 'Connexion sécurisée (HTTPS)'],
+      text: "On s'occupe de tout : votre site reste en ligne, à jour et sécurisé, sans que vous ayez à y penser.",
+      items: [
+        'Hébergement et mise en ligne',
+        'Nom de domaine inclus, enregistré à votre nom',
+        'Mises à jour techniques et de sécurité',
+        'Connexion sécurisée (HTTPS)',
+      ],
     },
     {
       name: 'En autonomie',
       price: 'Inclus',
       period: '',
       recommended: false,
-      text: 'Vous préférez gérer vous-même ? On vous fournit un guide pour héberger votre site.',
-      items: ['Guide pas à pas', 'Vous choisissez votre hébergeur'],
+      text: 'On met votre site en ligne pour vous, puis vous gérez la suite vous-même.',
+      items: [
+        'Mise en ligne par nos soins',
+        'Nom de domaine et hébergement à votre charge',
+        'Renouvellements et mises à jour gérés par vous',
+      ],
     },
   ],
+  // Encadré « nom de domaine » sous les tarifs
+  domain: {
+    title: 'Et le nom de domaine ?',
+    text: "C'est l'adresse de votre site (par exemple votre-entreprise.fr). Dans tous les cas, il est enregistré à votre nom : il vous appartient. Avec le Pack Tranquillité, on l'achète et on le renouvelle pour vous, c'est inclus. En autonomie, vous l'achetez vous-même (comptez quelques euros par an) et on vous aide à le relier à votre site.",
+  },
 };

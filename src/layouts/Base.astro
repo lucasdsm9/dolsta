@@ -23,6 +23,8 @@ const jsonLd = {
   description: site.description,
   url: Astro.site?.toString(),
   ...(site.email ? { email: site.email } : {}),
+  areaServed: site.region,
+  address: { '@type': 'PostalAddress', addressRegion: site.region, addressCountry: 'FR' },
 };
 ---
 
