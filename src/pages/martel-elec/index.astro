@@ -3,55 +3,55 @@
 //  MAQUETTE proposée à Martel Électricité (prospect).
 //  Page non référencée (noindex, hors sitemap), avec un bandeau
 //  qui indique clairement qu'il s'agit d'un aperçu réalisé par DOLSTA.
-//  Infos et photos : page Facebook et fiche Google publiques du client.
+//  Numéro de téléphone volontairement masqué (seuls les 3 premiers chiffres),
+//  pas de SIRET : les vraies coordonnées seront ajoutées à la mise en ligne.
 // ─────────────────────────────────────────────────────────────
-import '@fontsource/inter/latin-400.css';
-import '@fontsource/inter/latin-500.css';
-import '@fontsource/inter/latin-600.css';
-import '@fontsource/inter/latin-700.css';
-import '@fontsource/montserrat/latin-800.css';
-import '@fontsource/montserrat/latin-900.css';
-import '@fontsource/montserrat/latin-900-italic.css';
+import '@fontsource/outfit/latin-300.css';
+import '@fontsource/outfit/latin-400.css';
+import '@fontsource/outfit/latin-500.css';
+import '@fontsource/outfit/latin-600.css';
+import '@fontsource/dm-sans/latin-400.css';
+import '@fontsource/dm-sans/latin-500.css';
+import '@fontsource/dm-sans/latin-700.css';
 
-const accent = '#F5C518';
-const phone = '07 83 97 96 23';
-const phoneHref = 'tel:+33783979623';
+const proposition = '/proposition/martel-elec';
 const email = 'leo.martel@yahoo.com';
 const facebook = 'https://www.facebook.com/p/Martel-%C3%89lec-61551018905487/';
-const proposition = '/proposition/martel-elec';
 
-const clients = [
-  { title: 'Particuliers', text: 'Maisons individuelles, logements collectifs', icon: 'M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6' },
-  { title: 'Professionnels', text: 'Commerces, bureaux, locaux', icon: 'M3 9l1.5-5h15L21 9M3 9v12h18V9M3 9h18M9 21v-6h6v6' },
-  { title: 'Accompagnement', text: 'Conseils personnalisés, devis gratuit', icon: 'M8 12l3 3 5-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z' },
-];
 const services = [
   { title: 'Installation neuf & rénovation', items: ['Maisons individuelles', 'Appartements', 'Locaux professionnels'], icon: 'M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6' },
   { title: 'Tableaux électriques', items: ['Remplacement', 'Mise aux normes NF C 15-100', 'Ajout de protections'], icon: 'M4 3h16v18H4zM8 7v4M12 7v4M16 7v4M8 15h8' },
   { title: 'Dépannage', items: ['Recherche de panne', 'Intervention rapide', 'Remise en service'], icon: 'M13 2 4 14h7l-1 8 9-12h-7l1-8z' },
   { title: 'Éclairage', items: ['Intérieur et extérieur', 'Éclairage LED', 'Conseils et optimisation'], icon: 'M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z' },
-  { title: 'Prises, raccordements & chauffage', items: ['Ajout et remplacement de prises', 'Prises renforcées (four, plaque)', 'Radiateurs électriques'], icon: 'M12 22v-5M9 8V2M15 8V2M6 8h12v4a6 6 0 0 1-12 0z' },
+  { title: 'Prises & chauffage', items: ['Ajout et remplacement de prises', 'Prises renforcées (four, plaque)', 'Radiateurs électriques'], icon: 'M12 22v-5M9 8V2M15 8V2M6 8h12v4a6 6 0 0 1-12 0z' },
   { title: 'Domotique & connecté', items: ['Appareillages connectés', 'Pose de VMC', 'Motorisation de portail'], icon: 'M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a15 15 0 0 1 20 0M12 20h.01' },
 ];
 const reasons = [
-  { n: '01', title: 'Devis gratuit', text: 'Un devis clair et sans engagement, établi après avoir vu votre installation.' },
-  { n: '02', title: 'Réactif', text: 'Un seul interlocuteur, joignable directement, qui se déplace rapidement.' },
-  { n: '03', title: 'Propre et soigné', text: 'Un chantier rangé et une installation testée avant de partir, comme le soulignent les avis.' },
-  { n: '04', title: 'Sécurité, confort, performance', text: 'Une installation conforme aux normes et du matériel de marques reconnues.' },
+  { title: 'Devis gratuit', text: 'Clair et sans engagement, établi après avoir vu votre installation.', icon: 'M9 12h6M9 16h6M9 8h2M6 3h9l4 4v14H6z' },
+  { title: 'Réactif', text: 'Un seul interlocuteur, joignable directement, qui se déplace rapidement.', icon: 'M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z' },
+  { title: 'Propre et soigné', text: 'Un chantier rangé et une installation testée avant de partir.', icon: 'M20 6 9 17l-5-5' },
+  { title: 'Aux normes', text: 'Une installation conforme et du matériel de marques reconnues.', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
 ];
-const works = [
-  { step: '1 · Avant', title: "L'ancien tableau", text: 'Installation vieillissante, protections dépassées.', src: '/martel-elec/img/tableau-avant.jpg' },
-  { step: '2 · Diagnostic', title: 'Câblage d’origine', text: 'Ouverture du tableau et repérage des circuits.', src: '/martel-elec/img/tableau-diagnostic.jpg' },
-  { step: '3 · Chantier', title: 'Dépose et reprise', text: 'Circuits repérés, nouveau support en place.', src: '/martel-elec/img/tableau-chantier.jpg' },
-  { step: '4 · Après', title: 'Tableau neuf, aux normes', text: 'Protections modernes, tableau propre et repéré.', src: '/martel-elec/img/tableau-apres.jpg' },
+const steps = [
+  { title: 'Vous me contactez', text: 'Par téléphone ou via le formulaire, en expliquant votre besoin ou votre panne.' },
+  { title: 'Devis gratuit', text: 'Je viens voir votre installation et je vous remets un devis clair, sans engagement.' },
+  { title: 'Intervention soignée', text: 'Travaux réalisés proprement, installation testée avant de partir.' },
 ];
 const reviews = [
   { text: 'Très bon travail, est venu me dépanner rapidement. Je recommande !', name: 'Victor D.', date: 'octobre 2026' },
   { text: 'Je recommande vivement M. Martel. Installation de radiateurs électriques chez moi. Très bon travail, propre et soigné. Très professionnel.', name: 'Patricia D.', date: 'mai 2025' },
   { text: 'Artisan très sérieux. Bon travail, propre et rapide. À recommander sans hésitation.', name: 'Marie-Paule C.', date: 'juillet 2025' },
 ];
-const towns = ['Saint-Augustin', 'Aire-sur-la-Lys', 'Isbergues', 'et environs'];
-const phoneIcon = 'M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z';
+const faq = [
+  { q: 'Le devis est-il payant ?', a: 'Non. Le devis est gratuit et sans engagement : je viens voir votre installation, puis je vous explique ce qu’il faut faire et combien ça coûte.' },
+  { q: 'Dans quelles communes intervenez-vous ?', a: 'À Saint-Augustin, Aire-sur-la-Lys, Isbergues et dans les communes voisines du Pas-de-Calais. Votre commune n’est pas listée ? Contactez-moi.' },
+  { q: 'Travaillez-vous pour les professionnels ?', a: 'Oui : commerces, bureaux et locaux professionnels, en plus des maisons et appartements.' },
+  { q: 'Comment savoir si mon tableau est encore aux normes ?', a: 'Échauffement, disjoncteurs qui sautent, installation ancienne ou vente en vue : je viens vérifier votre tableau et vous explique simplement ce qu’il faut faire.' },
+];
+const ticker = ['Disponible 7j/7', 'Devis gratuit', 'Normes NF C 15-100', 'Saint-Augustin', 'Aire-sur-la-Lys', 'Isbergues', 'Neuf & rénovation'];
+const brands = ['Schneider Electric', 'Legrand', 'Hager', 'Somfy', 'FAAC', 'Thermor'];
+const bolt = 'M13 2 4 14h7l-1 8 9-12h-7l1-8z';
+const arrow = 'M5 12h14M13 6l6 6-6 6';
 ---
 
 <!doctype html>
@@ -66,182 +66,159 @@ const phoneIcon = 'M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 
   </head>
   <body>
     <!-- Bandeau : aperçu réalisé par DOLSTA -->
-    <div class="me-demo">
+    <div class="demo">
       <span><strong>Aperçu</strong> · Maquette réalisée par DOLSTA pour Martel Électricité. Ce site n'est pas encore en ligne.</span>
       <a href={proposition}>Voir la proposition →</a>
     </div>
 
     <div class="me">
-      <!-- Top bar -->
-      <div class="me-topbar" style="background: #0A0A0B; color: #C8C8CE; font-size: 14px">
-        <div class="me-wrap" style="padding-top: 10px; padding-bottom: 10px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center">
-          <span>Électricien à Saint-Augustin (62) · Aire-sur-la-Lys, Isbergues et environs</span>
-          <span style="display: flex; gap: 20px; flex-wrap: wrap"><span>Disponible 7j/7</span><a href={`mailto:${email}`} style="color: #C8C8CE; text-decoration: none">{email}</a></span>
-        </div>
-      </div>
-
       <!-- Header -->
-      <header style="background: #121214; color: #fff; border-bottom: 1px solid #2C2C32">
-        <div class="me-wrap" style="padding-top: 12px; padding-bottom: 12px; display: flex; gap: 16px; align-items: center; justify-content: space-between">
-          <a href="#top" aria-label="Martel Électricité, accueil" style="display: flex; align-items: center">
-            <img src="/martel-elec/img/logo.jpg" alt="Martel Électricité" width="378" height="120" class="me-logo" />
-          </a>
-          <nav aria-label="Navigation principale" style="display: flex; gap: 28px; align-items: center; font-size: 15px; font-weight: 500">
-            <a class="me-navlink" href="#services">Prestations</a>
-            <a class="me-navlink" href="#realisations">Réalisations</a>
-            <a class="me-navlink" href="#avis">Avis</a>
-            <a class="me-navlink" href="#contact">Contact</a>
-            <a href={phoneHref} class="me-btn-accent me-phone-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={phoneIcon}></path></svg>
-              {phone}
-            </a>
+      <header class="hdr">
+        <div class="wrap hdr-in">
+          <nav aria-label="Navigation principale" class="hdr-nav">
+            <a href="#services">Prestations</a>
+            <a href="#apropos">À propos</a>
+            <a href="#avis">Avis</a>
+            <a href="#faq">Questions</a>
           </nav>
+          <a href="#top" class="hdr-logo" aria-label="Martel Électricité, accueil">
+            <img src="/martel-elec/img/logo.jpg" alt="Martel Électricité" width="378" height="120" />
+          </a>
+          <div class="hdr-right">
+            <a href="#contact" class="btn btn-yellow btn-sm">Devis gratuit</a>
+          </div>
         </div>
       </header>
 
       <!-- Hero -->
-      <section id="top" style="background: #121214; color: #fff">
-        <div class="me-wrap me-hero" style="display: flex; flex-wrap: wrap; gap: 64px; align-items: center">
-          <div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
-            <span style={`align-self: flex-start; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: ${accent}; border: 1px solid #3A3A42; padding: 8px 14px; border-radius: 999px`}>Neuf &amp; rénovation<span class="me-hide-sm"> · Particuliers et pros</span></span>
-            <h1 class="me-h1">Votre projet électrique,<br /><span style={`color: ${accent}; font-style: italic`}>notre métier.</span></h1>
-            <p style="margin: 0; font-size: clamp(16px, 2vw, 19px); line-height: 1.6; color: #C8C8CE; max-width: 560px">Installation, mise aux normes, tableau électrique, dépannage et domotique. Léo Martel, artisan électricien, intervient à Saint-Augustin, Aire-sur-la-Lys, Isbergues et dans les communes voisines.</p>
-            <div class="me-cta-row" style="display: flex; flex-wrap: wrap; gap: 14px">
-              <a href="#contact" class="me-btn-accent" style="font-size: 17px; padding: 16px 26px; border-radius: 10px">Demander un devis gratuit</a>
-              <a href={phoneHref} style="color: #fff; text-decoration: none; font-weight: 600; font-size: 17px; padding: 15px 24px; border-radius: 10px; border: 1.5px solid #4A4A52; display: inline-flex; gap: 10px; align-items: center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={phoneIcon}></path></svg>
-                {phone}
-              </a>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 15px; color: #E0E0E5; padding-top: 6px">
-              {['Devis gratuit et sans engagement', 'Intervention rapide', 'Normes NF C 15-100'].map((t) => (
-                <span style="display: flex; gap: 8px; align-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={accent} stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>{t}</span>
-              ))}
+      <section id="top" class="wrap hero-wrap">
+        <div class="hero">
+          <div class="hero-text">
+            <p class="kicker"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={bolt}></path></svg>Électricien à Saint-Augustin (62)</p>
+            <h1 class="h1"><span class="w-600">Votre projet</span> <span class="w-300">électrique,</span> <span class="w-600 yellow">notre métier.</span></h1>
+            <p class="lead">Installation, mise aux normes, tableau électrique, dépannage et domotique, à Aire-sur-la-Lys, Isbergues et dans les communes voisines.</p>
+            <div class="hero-ctas">
+              <a href="#contact" class="btn btn-yellow">Demander un devis gratuit <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={arrow}></path></svg></a>
+              <a href="#services" class="link-light">Nos prestations <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={arrow}></path></svg></a>
             </div>
           </div>
-          <div style="flex: 1 1 340px; min-width: 0; position: relative; display: flex; justify-content: center">
-            <img src="/martel-elec/img/tableau-apres.jpg" alt="Tableau électrique neuf posé par Martel Électricité" width="449" height="600" class="me-hero-img" />
-            <div style="position: absolute; left: 0; bottom: -30px; background: #fff; color: #121214; border-radius: 14px; padding: 16px 22px; display: flex; gap: 14px; align-items: center; box-shadow: 0 14px 36px rgba(0,0,0,0.35)">
-              <span style="font-family: Montserrat, sans-serif; font-weight: 900; font-size: 34px">5,0</span>
-              <span style="display: flex; flex-direction: column; gap: 2px; font-size: 14px"><span style="color: #B08500; font-size: 17px; letter-spacing: 2px" aria-label="5 étoiles sur 5">★★★★★</span><span style="color: #4A4A52">7 avis Google</span></span>
+          <div class="hero-media">
+            <img src="/martel-elec/img/tableau-apres.jpg" alt="Tableau électrique neuf posé par Martel Électricité" width="449" height="600" />
+            <div class="rating">
+              <span class="rating-n">5,0</span>
+              <span class="rating-t"><span class="stars" aria-label="5 étoiles sur 5">★★★★★</span>7 avis Google</span>
             </div>
-            <div style={`position: absolute; right: 0; top: 24px; background: ${accent}; color: #121214; border-radius: 10px; padding: 10px 14px; font-weight: 700; font-size: 14px`}>Tableau rénové · après</div>
           </div>
         </div>
       </section>
 
-      <!-- Clients strip -->
-      <section style="background: #fff; border-bottom: 1px solid #E6E1D5">
-        <div class="me-wrap" style="padding-top: 48px; padding-bottom: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px">
-          {clients.map((c) => (
-            <div style="display: flex; gap: 16px; align-items: center">
-              <span style="flex: none; width: 52px; height: 52px; border-radius: 12px; background: #121214; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={accent} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={c.icon}></path></svg></span>
-              <span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-family: Montserrat, sans-serif; font-size: 17px">{c.title}</strong><span style="font-size: 15px; color: #4A4A52">{c.text}</span></span>
+      <!-- À propos -->
+      <section id="apropos" class="wrap about">
+        <p class="label"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={bolt}></path></svg>À propos</p>
+        <div>
+          <p class="statement">Installé à mon compte depuis 2023, je prends le temps d'examiner votre installation, <span class="muted">de vous expliquer les éventuels défauts et de vous proposer des solutions adaptées à votre logement et à votre budget.</span></p>
+          <div class="sign">
+            <img src="/martel-elec/img/portrait.jpg" alt="" width="281" height="281" />
+            <span><strong>Léo Martel</strong><span>Artisan électricien · Particuliers et professionnels</span></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bandeau défilant -->
+      <div class="ticker" role="note" aria-label={ticker.join(' · ')}>
+        <div class="ticker-track" aria-hidden="true">
+          {[0, 1].map(() => (
+            <span class="ticker-group">
+              {ticker.map((t) => <span class="ticker-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d={bolt}></path></svg>{t}</span>)}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Prestations -->
+      <section id="services" class="dark">
+        <div class="wrap section">
+          <div class="head-center">
+            <p class="label label-yellow"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={bolt}></path></svg>Mes prestations</p>
+            <h2 class="h2"><span class="w-300">Toute votre électricité,</span> <span class="w-500">du tableau à la prise.</span></h2>
+          </div>
+          <div class="svc-grid">
+            {services.map((s, i) => (
+              <article class="svc">
+                <div class="svc-top">
+                  <span class="icon-ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={s.icon}></path></svg></span>
+                  <span class="svc-n">0{i + 1}</span>
+                </div>
+                <h3 class="svc-t">{s.title}</h3>
+                <ul>{s.items.map((it) => <li>{it}</li>)}</ul>
+              </article>
+            ))}
+          </div>
+          <div class="center"><a href="#contact" class="btn btn-yellow">Parler de votre projet</a></div>
+        </div>
+      </section>
+
+      <!-- Pourquoi -->
+      <section class="wrap section">
+        <div class="head-center">
+          <p class="label"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={bolt}></path></svg>Pourquoi Martel Électricité</p>
+          <h2 class="h2"><span class="w-300">Un artisan local</span> <span class="w-500">qui prend le temps.</span></h2>
+        </div>
+        <div class="why-grid">
+          {reasons.map((r) => (
+            <div class="why">
+              <span class="icon-ring icon-ring-dark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={r.icon}></path></svg></span>
+              <h3>{r.title}</h3>
+              <p>{r.text}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <!-- Services -->
-      <section id="services" class="me-section">
-        <div class="me-wrap" style="display: flex; flex-direction: column; gap: 48px">
-          <div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end">
-            <div style="display: flex; flex-direction: column; gap: 12px; max-width: 680px">
-              <span class="me-eyebrow">Mes prestations</span>
-              <h2 class="me-h2">Toute votre électricité, du tableau à la prise.</h2>
-            </div>
-            <a href="#contact" style="font-weight: 600; font-size: 16px">Parler de votre projet →</a>
+      <!-- Bandeau tableau -->
+      <section class="wrap">
+        <div class="band">
+          <div>
+            <h2 class="band-t">Votre tableau électrique est-il encore aux normes ?</h2>
+            <p>Échauffement, disjoncteurs qui ne protègent plus, installation non conforme en cas de vente ou d'assurance : je viens vérifier et je vous explique simplement ce qu'il faut faire.</p>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px">
-            {services.map((s) => (
-              <article style="background: #fff; border-radius: 16px; padding: 30px; display: flex; flex-direction: column; gap: 14px; border: 1px solid #E6E1D5">
-                <span style="width: 52px; height: 52px; border-radius: 12px; background: #121214; display: flex; align-items: center; justify-content: center">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={accent} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={s.icon}></path></svg>
-                </span>
-                <h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 21px">{s.title}</h3>
-                <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
-                  {s.items.map((it) => (
-                    <li style="display: flex; gap: 10px; align-items: baseline; font-size: 16px; line-height: 1.5; color: #3A3A42"><span style="flex: none; width: 7px; height: 7px; border-radius: 2px; background: #121214; transform: translateY(-2px)"></span>{it}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
+          <a href="#contact" class="btn btn-dark">Faire vérifier mon tableau</a>
         </div>
       </section>
 
-      <!-- Tableau CTA band -->
-      <section style={`background: ${accent}; color: #121214`}>
-        <div class="me-wrap" style="padding-top: 56px; padding-bottom: 56px; display: flex; flex-wrap: wrap; gap: 28px; align-items: center; justify-content: space-between">
-          <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
-            <h2 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 900; font-size: clamp(26px, 3.4vw, 34px); line-height: 1.15; letter-spacing: -0.5px">Votre tableau électrique est-il encore aux normes ?</h2>
-            <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 720px">Échauffement, disjoncteurs qui ne protègent plus, installation non conforme en cas de vente ou d'assurance : un doute ? Je viens vérifier votre tableau et vous explique simplement ce qu'il faut faire.</p>
-          </div>
-          <a href="#contact" style="flex: none; background: #121214; color: #fff; text-decoration: none; font-weight: 700; font-size: 17px; padding: 18px 28px; border-radius: 10px">Faire vérifier mon tableau</a>
+      <!-- Étapes -->
+      <section class="wrap section">
+        <div class="head-center">
+          <p class="label"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={bolt}></path></svg>Comment ça se passe</p>
+          <h2 class="h2"><span class="w-300">Simple, rapide</span> <span class="w-500">et sans surprise.</span></h2>
         </div>
-      </section>
-
-      <!-- Pourquoi -->
-      <section class="me-section" style="background: #fff; border-bottom: 1px solid #E6E1D5">
-        <div class="me-wrap" style="display: flex; flex-wrap: wrap; gap: 64px; align-items: flex-start">
-          <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
-            <span class="me-eyebrow">Pourquoi Martel Électricité</span>
-            <h2 class="me-h2">Un artisan local qui prend le temps.</h2>
-            <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #4A4A52">Installé à mon compte depuis 2023, je prends le temps d'examiner votre installation, de vous expliquer les éventuels défauts et de vous proposer des solutions adaptées à votre logement et à votre budget.</p>
-            <div style="display: flex; gap: 16px; align-items: center; padding-top: 6px">
-              <img src="/martel-elec/img/portrait.jpg" alt="" width="281" height="281" style="width: 72px; height: 72px; border-radius: 50%; object-fit: cover" />
-              <span style="display: flex; flex-direction: column"><strong style="font-size: 17px">Léo Martel</strong><span style="font-size: 15px; color: #4A4A52">Artisan électricien</span></span>
-            </div>
-          </div>
-          <div style="flex: 1 1 480px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px 40px">
-            {reasons.map((r) => (
-              <div style="display: flex; flex-direction: column; gap: 10px; border-top: 3px solid #121214; padding-top: 20px">
-                <span style="font-family: Montserrat, sans-serif; font-weight: 900; font-size: 15px; color: #866500">{r.n}</span>
-                <h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 20px">{r.title}</h3>
-                <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A4A52">{r.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <!-- Réalisations -->
-      <section id="realisations" class="me-section">
-        <div class="me-wrap" style="display: flex; flex-direction: column; gap: 40px">
-          <div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end">
-            <div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px">
-              <span class="me-eyebrow">Réalisation</span>
-              <h2 class="me-h2">Rénovation d'un tableau électrique, étape par étape</h2>
-            </div>
-            <a href={facebook} target="_blank" rel="noopener" style="font-weight: 600; font-size: 16px">Plus de chantiers sur Facebook →</a>
-          </div>
-          <div class="me-works">
-            {works.map((w) => (
-              <figure style="margin: 0; display: flex; flex-direction: column; gap: 14px">
-                <div style="position: relative">
-                  <img src={w.src} alt={w.title} width="449" height="600" loading="lazy" class="me-work-img" />
-                  <span style="position: absolute; top: 12px; left: 12px; background: #121214; color: #fff; font-size: 13px; font-weight: 700; padding: 6px 10px; border-radius: 6px">{w.step}</span>
-                </div>
-                <figcaption style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 16px">{w.title}</strong><span style="font-size: 14px; color: #5A5A62">{w.text}</span></figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
+        <ol class="steps">
+          {steps.map((s, i) => (
+            <li>
+              <span class="step-n">0{i + 1}</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <!-- Avis -->
-      <section id="avis" class="me-section" style="background: #121214; color: #fff">
-        <div class="me-wrap" style="display: flex; flex-direction: column; gap: 44px">
-          <div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end">
-            <h2 class="me-h2">Ils recommandent Martel Électricité</h2>
-            <span style="display: flex; gap: 12px; align-items: center; font-size: 16px; color: #C8C8CE"><strong style="font-family: Montserrat, sans-serif; font-size: 30px; color: #fff">5,0</strong><span style={`color: ${accent}; letter-spacing: 2px`} aria-label="5 étoiles sur 5">★★★★★</span>7 avis Google</span>
+      <section id="avis" class="dark">
+        <div class="wrap section">
+          <div class="head-split">
+            <div>
+              <p class="label label-yellow"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={bolt}></path></svg>Avis clients</p>
+              <h2 class="h2"><span class="w-300">Ils recommandent</span> <span class="w-500">Martel Électricité.</span></h2>
+            </div>
+            <p class="score"><span class="score-n">5,0</span><span><span class="stars" aria-label="5 étoiles sur 5">★★★★★</span><br />7 avis Google</span></p>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 20px">
+          <div class="rev-grid">
             {reviews.map((v) => (
-              <blockquote style="margin: 0; background: #1C1C20; border: 1px solid #2C2C32; border-radius: 16px; padding: 30px; display: flex; flex-direction: column; gap: 18px">
-                <span style={`color: ${accent}; letter-spacing: 3px; font-size: 18px`} aria-label="5 étoiles sur 5">★★★★★</span>
-                <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #EDEDF0; flex-grow: 1">« {v.text} »</p>
-                <footer style="font-size: 14px; color: #A8A8B0">{v.name} · {v.date}</footer>
+              <blockquote class="rev">
+                <svg class="quote" width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 6C6.5 7.4 4.5 10 4.5 13.6V18h5.3v-5.3H7.2c0-2 1.2-3.6 3.2-4.6L9.6 6zm9.4 0c-3.1 1.4-5.1 4-5.1 7.6V18h5.3v-5.3h-2.6c0-2 1.2-3.6 3.2-4.6L19 6z"></path></svg>
+                <p>{v.text}</p>
+                <footer><strong>{v.name}</strong> · {v.date}</footer>
               </blockquote>
             ))}
           </div>
@@ -249,62 +226,101 @@ const phoneIcon = 'M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 
       </section>
 
       <!-- Zone + marques -->
-      <section id="zone" class="me-section">
-        <div class="me-wrap" style="display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
-          <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
-            <span class="me-eyebrow">Zone d'intervention</span>
-            <h2 class="me-h2">Aire-sur-la-Lys, Isbergues et environs</h2>
-            <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #4A4A52">Basé dans le Pas-de-Calais, je me déplace chez les particuliers et les professionnels du secteur. Votre commune n'est pas listée ? Appelez-moi.</p>
-            <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px">
-              {towns.map((t) => <li style="background: #fff; border: 1px solid #DCD6C8; border-radius: 999px; padding: 9px 16px; font-size: 15px; font-weight: 500">{t}</li>)}
-            </ul>
-            <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 14px; border-top: 1px solid #E6E1D5">
-              <span style="font-size: 14px; font-weight: 600; color: #4A4A52">Matériel de marques reconnues</span>
-              <span style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 18px; color: #2A2A30; display: flex; flex-wrap: wrap; gap: 8px 22px"><span>Schneider Electric</span><span>Legrand</span><span>Hager</span><span>Somfy</span><span>FAAC</span><span>Thermor</span></span>
-            </div>
-          </div>
-          <div style="flex: 1 1 420px; min-width: 0; height: 360px; border-radius: 18px; background: #ECE8DE; border: 2px dashed #C9C2B2; display: flex; align-items: center; justify-content: center; color: #5E594F; font-size: 15px; text-align: center; padding: 24px; box-sizing: border-box">Carte Google Maps de votre zone d'intervention<br />(ajoutée à la mise en ligne)</div>
+      <section class="wrap section zone">
+        <div>
+          <p class="label"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={bolt}></path></svg>Zone d'intervention</p>
+          <h2 class="h2"><span class="w-300">Aire-sur-la-Lys,</span> <span class="w-500">Isbergues et environs.</span></h2>
+          <p class="body">Basé dans le Pas-de-Calais, je me déplace chez les particuliers et les professionnels du secteur.</p>
+          <ul class="towns">{['Saint-Augustin', 'Aire-sur-la-Lys', 'Isbergues', 'et environs'].map((t) => <li>{t}</li>)}</ul>
+        </div>
+        <div>
+          <p class="brands-t">Matériel de marques reconnues</p>
+          <ul class="brands">{brands.map((b) => <li>{b}</li>)}</ul>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="wrap section faq-wrap">
+        <div>
+          <p class="label"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={bolt}></path></svg>Questions fréquentes</p>
+          <h2 class="h2"><span class="w-300">Vous vous</span> <span class="w-500">posez la question&nbsp;?</span></h2>
+          <a href="#contact" class="btn btn-dark faq-btn">Me poser une question</a>
+        </div>
+        <div class="faq">
+          {faq.map((f, i) => (
+            <details open={i === 0}>
+              <summary>{f.q}<span class="plus" aria-hidden="true"></span></summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
         </div>
       </section>
 
       <!-- Contact -->
-      <section id="contact" class="me-section" style="background: #fff; border-top: 1px solid #E6E1D5">
-        <div class="me-wrap" style="display: flex; flex-wrap: wrap; gap: 56px">
-          <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
-            <span class="me-eyebrow">Contact</span>
-            <h2 class="me-h2">Un projet électrique ?<br />Contactez-moi !</h2>
-            <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #4A4A52">Devis gratuit et sans engagement. Par téléphone, par email ou via le formulaire.</p>
-            <div style="display: flex; flex-direction: column; gap: 14px; font-size: 16px">
-              <span class="me-row"><strong>Téléphone</strong><a href={phoneHref} style="font-weight: 600">{phone}</a></span>
-              <span class="me-row"><strong>Email</strong><a href={`mailto:${email}`}>{email}</a></span>
-              <span class="me-row"><strong>Secteur</strong>Saint-Augustin, Aire-sur-la-Lys, Isbergues (62)</span>
-              <span class="me-row"><strong>Horaires</strong>7j/7, 24h/24</span>
-            </div>
+      <section id="contact" class="wrap contact-wrap">
+        <div class="contact">
+          <div class="contact-info">
+            <p class="label label-yellow"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={bolt}></path></svg>Contact</p>
+            <h2 class="h2"><span class="w-300">Un projet électrique&nbsp;?</span> <span class="w-500">Parlons-en.</span></h2>
+            <p class="body-light">Devis gratuit et sans engagement, par téléphone, par email ou via le formulaire.</p>
+            <dl>
+              <div><dt>Téléphone</dt><dd><span class="masked" aria-label="Numéro masqué dans la maquette">07 8<span class="blur" aria-hidden="true">0 00 00 00</span></span></dd></div>
+              <div><dt>Email</dt><dd><a href={`mailto:${email}`}>{email}</a></dd></div>
+              <div><dt>Secteur</dt><dd>Saint-Augustin, Aire-sur-la-Lys, Isbergues (62)</dd></div>
+              <div><dt>Horaires</dt><dd>7j/7, 24h/24</dd></div>
+            </dl>
           </div>
-          <form id="me-form" class="me-form" style="flex: 1 1 480px; min-width: 0; background: #F7F5F0; border-radius: 18px; box-sizing: border-box">
-            <label class="me-label">Nom<input type="text" placeholder="Votre nom" class="me-input" /></label>
-            <label class="me-label">Téléphone<input type="tel" placeholder="06 00 00 00 00" class="me-input" /></label>
-            <label class="me-label">Commune<input type="text" placeholder="Ex. Aire-sur-la-Lys" class="me-input" /></label>
-            <label class="me-label">Type de besoin<select class="me-input"><option>Dépannage</option><option>Tableau / mise aux normes</option><option>Installation neuve ou rénovation</option><option>Éclairage, prises, chauffage</option><option>Domotique, VMC, portail</option><option>Autre</option></select></label>
-            <label class="me-label me-full">Votre message<textarea rows="4" placeholder="Décrivez votre projet ou votre panne…" class="me-input" style="resize: vertical"></textarea></label>
-            <button type="submit" class="me-full" style="background: #121214; color: #fff; font: inherit; font-weight: 700; font-size: 17px; padding: 16px; border: 0; border-radius: 10px; cursor: pointer">Envoyer ma demande</button>
-            <p id="me-form-note" role="status" aria-live="polite" class="me-full" style="margin: 0; font-size: 14px; color: #4A4A52"></p>
+          <form id="me-form" class="form">
+            <label>Nom<input type="text" placeholder="Votre nom" /></label>
+            <label>Téléphone<input type="tel" placeholder="06 00 00 00 00" /></label>
+            <label>Commune<input type="text" placeholder="Ex. Aire-sur-la-Lys" /></label>
+            <label>Type de besoin<select><option>Dépannage</option><option>Tableau / mise aux normes</option><option>Installation neuve ou rénovation</option><option>Éclairage, prises, chauffage</option><option>Domotique, VMC, portail</option><option>Autre</option></select></label>
+            <label class="full">Votre message<textarea rows="4" placeholder="Décrivez votre projet ou votre panne…"></textarea></label>
+            <button type="submit" class="btn btn-yellow full">Envoyer ma demande</button>
+            <p id="me-form-note" role="status" aria-live="polite" class="full note"></p>
           </form>
         </div>
       </section>
 
       <!-- Footer -->
-      <footer style="background: #0A0A0B; color: #A8A8B0; padding: 44px 0; font-size: 14px">
-        <div class="me-wrap" style="display: flex; flex-wrap: wrap; gap: 20px 40px; justify-content: space-between; align-items: center">
-          <img src="/martel-elec/img/logo.jpg" alt="Martel Électricité" width="378" height="120" style="height: 44px; width: auto; display: block" />
-          <span>Léo Martel · Électricien · SIRET 953 193 471 00018</span>
-          <span style="display: flex; gap: 20px"><span>Mentions légales</span><a href={facebook} target="_blank" rel="noopener" style="color: #C8C8CE">Facebook</a></span>
+      <footer class="ftr">
+        <div class="ftr-big" aria-hidden="true">Votre projet, notre métier · Votre projet, notre métier ·</div>
+        <div class="wrap ftr-in">
+          <div class="ftr-brand">
+            <img src="/martel-elec/img/logo.jpg" alt="Martel Électricité" width="378" height="120" />
+            <p>Artisan électricien à Saint-Augustin, Aire-sur-la-Lys et Isbergues. Neuf et rénovation, particuliers et professionnels.</p>
+          </div>
+          <div>
+            <p class="ftr-t">Prestations</p>
+            <ul>{services.slice(0, 4).map((s) => <li><a href="#services">{s.title}</a></li>)}</ul>
+          </div>
+          <div>
+            <p class="ftr-t">Liens</p>
+            <ul>
+              <li><a href="#apropos">À propos</a></li>
+              <li><a href="#avis">Avis clients</a></li>
+              <li><a href="#faq">Questions fréquentes</a></li>
+              <li><a href={facebook} target="_blank" rel="noopener">Facebook</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="ftr-t">Contact</p>
+            <ul>
+              <li><span class="masked" aria-label="Numéro masqué dans la maquette">07 8<span class="blur" aria-hidden="true">0 00 00 00</span></span></li>
+              <li><a href={`mailto:${email}`}>{email}</a></li>
+              <li>7j/7, 24h/24</li>
+            </ul>
+          </div>
+        </div>
+        <div class="wrap ftr-bottom">
+          <span>© {new Date().getFullYear()} Martel Électricité</span>
+          <span>Mentions légales</span>
         </div>
       </footer>
     </div>
 
     <!-- Bouton flottant vers la proposition -->
-    <a href={`${proposition}#tarifs`} class="me-float">Ce site vous plaît ? <strong>Voir l'offre</strong></a>
+    <a href={`${proposition}#tarifs`} class="float">Ce site vous plaît ? <strong>Voir l'offre</strong></a>
 
     <script>
       // Maquette : le formulaire n'envoie rien, il explique simplement qu'il sera branché à la mise en ligne.
@@ -312,55 +328,220 @@ const phoneIcon = 'M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 
       const note = document.getElementById('me-form-note');
       form?.addEventListener('submit', (e) => {
         e.preventDefault();
-        if (note) note.textContent = "Démonstration : ce formulaire sera relié à votre boîte mail lors de la mise en ligne du site.";
+        if (note) note.textContent = 'Démonstration : ce formulaire sera relié à votre boîte mail lors de la mise en ligne du site.';
       });
     </script>
 
     <style is:global>
-      body { margin: 0; background: #F7F5F0; }
-      .me { font-family: Inter, system-ui, sans-serif; color: #121214; background: #F7F5F0; }
-      .me a { color: #121214; }
-      .me a:hover { color: #4A4A52; }
-      .me-wrap { max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px; box-sizing: border-box; }
-      .me-hero { padding-top: clamp(48px, 8vw, 88px); padding-bottom: clamp(72px, 9vw, 104px); }
-      .me-section { padding: clamp(64px, 9vw, 104px) 0; }
-      .me-h1 { margin: 0; font-family: Montserrat, sans-serif; font-weight: 900; font-size: clamp(36px, 6vw, 62px); line-height: 1.04; letter-spacing: -1.5px; }
-      .me-h2 { margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: clamp(28px, 4.2vw, 42px); line-height: 1.12; letter-spacing: -1px; }
-      .me-eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #866500; }
-      .me-hero-img { width: 100%; max-width: 420px; height: clamp(300px, 52vw, 520px); object-fit: cover; border-radius: 18px; display: block; border: 1px solid #2C2C32; }
-      .me .me-navlink { color: #E6E6EA; text-decoration: none; }
-      .me .me-navlink:hover { color: #fff; }
-      .me .me-btn-accent { background: #F5C518; color: #121214; text-decoration: none; font-weight: 700; min-height: 44px; box-sizing: border-box; display: inline-flex; gap: 8px; align-items: center; }
-      .me .me-btn-accent:hover { background: #FFD84D; color: #121214; }
-      .me-logo { height: 52px; width: auto; display: block; }
-      .me .me-phone-btn { padding: 12px 18px; border-radius: 8px; font-size: 15px; white-space: nowrap; }
-      .me-works { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
-      .me-work-img { width: 100%; height: 340px; object-fit: cover; border-radius: 14px; display: block; }
-      .me-row { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
-      .me-row strong { flex: none; width: 96px; }
-      .me-form { padding: 36px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-      .me-full { grid-column: 1 / -1; }
-      .me-label { display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600; }
-      .me-input { font: inherit; font-weight: 400; font-size: 16px; padding: 13px 14px; border: 1px solid #C9C2B2; border-radius: 8px; background: #fff; color: #121214; }
-
-      .me-demo { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: center; padding: 10px 16px; background: #4C4CF0; color: #fff; font: 14px/1.4 Inter, system-ui, sans-serif; text-align: center; }
-      .me-demo a { color: #fff; font-weight: 600; text-underline-offset: 3px; }
-      .me-float { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: inline-flex; gap: 6px; align-items: center; min-height: 48px; padding: 0 20px; border-radius: 999px; background: #4C4CF0; color: #fff; text-decoration: none; font: 15px Inter, system-ui, sans-serif; box-shadow: 0 12px 30px rgba(20,20,60,0.35); }
-      .me-float:hover { filter: brightness(0.92); }
-
-      @media (max-width: 860px) {
-        .me .me-navlink { display: none; }
+      :root {
+        --ink: #121214; --ink-2: #1c1c20; --line-dark: #2c2c32;
+        --yellow: #f5c518; --yellow-2: #ffd84d; --gold: #866500;
+        --cream: #f7f5f0; --line: #e4dfd3; --muted: #5a5a62; --muted-dark: #b8b8c0;
+        --display: Outfit, system-ui, sans-serif; --text: 'DM Sans', system-ui, sans-serif;
       }
-      @media (max-width: 560px) {
-        .me-wrap { padding-left: 16px; padding-right: 16px; }
-        .me-topbar, .me-hide-sm { display: none; }
-        .me-logo { height: 40px; }
-        .me .me-phone-btn { padding: 10px 12px; font-size: 14px; }
-        .me-cta-row a { flex: 1 1 100%; justify-content: center; }
-        .me-form { grid-template-columns: 1fr; padding: 24px; }
-        .me-works { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-        .me-work-img { height: 220px; }
-        .me-float { left: 16px; right: 16px; justify-content: center; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--cream); }
+      .me { font-family: var(--text); color: var(--ink); background: var(--cream); font-size: 16px; line-height: 1.6; }
+      .me a { color: inherit; }
+      .wrap { max-width: 1240px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+      .section { padding-top: clamp(72px, 9vw, 112px); padding-bottom: clamp(72px, 9vw, 112px); }
+      .w-300 { font-weight: 300; } .w-500 { font-weight: 500; } .w-600 { font-weight: 600; }
+      .yellow { color: var(--yellow); }
+      .muted { color: var(--muted); }
+      .center { text-align: center; margin-top: 48px; }
+
+      /* Typo */
+      .h1 { margin: 0; font-family: var(--display); font-size: clamp(40px, 6vw, 72px); line-height: 1.02; letter-spacing: -0.03em; }
+      .h1 > span { display: block; }
+      .h2 { margin: 0; font-family: var(--display); font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; letter-spacing: -0.025em; }
+      .label { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px; font-size: 14px; font-weight: 500; color: var(--gold); }
+      .label-yellow { color: var(--yellow); }
+      .kicker { display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.08); color: #e6e6ea; font-size: 14px; }
+      .kicker svg { color: var(--yellow); }
+      .lead { margin: 0; font-size: 18px; color: var(--muted-dark); max-width: 520px; }
+      .body { margin: 20px 0 0; font-size: 17px; color: var(--muted); max-width: 520px; }
+      .body-light { margin: 20px 0 0; font-size: 17px; color: var(--muted-dark); }
+
+      /* Boutons */
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px; font-family: var(--text); font-weight: 500; font-size: 16px; text-decoration: none; border: 0; cursor: pointer; transition: background .2s, transform .2s; }
+      .btn:hover { transform: translateY(-1px); }
+      .btn-sm { min-height: 44px; padding: 0 20px; font-size: 15px; }
+      .me .btn-yellow { background: var(--yellow); color: var(--ink); }
+      .me .btn-yellow:hover { background: var(--yellow-2); }
+      .me .btn-dark { background: var(--ink); color: #fff; }
+      .me .btn-dark:hover { background: #2a2a30; }
+      .me .link-light { display: inline-flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-weight: 500; }
+      .me .link-light:hover { color: var(--yellow); }
+
+      /* Header */
+      .hdr { background: var(--cream); }
+      .hdr-in { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding-top: 16px; padding-bottom: 16px; }
+      .hdr-nav { display: flex; gap: 28px; font-size: 15px; font-weight: 500; }
+      .me .hdr-nav a { text-decoration: none; color: var(--ink); }
+      .me .hdr-nav a:hover { color: var(--gold); }
+      .hdr-logo img { display: block; height: 48px; width: auto; border-radius: 10px; }
+      .hdr-right { display: flex; justify-content: flex-end; }
+
+      /* Hero */
+      .hero-wrap { padding-top: 8px; }
+      .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 48px; align-items: center; background: var(--ink); color: #fff; border-radius: 32px; padding: clamp(32px, 5vw, 64px); overflow: hidden; }
+      .hero-text { display: flex; flex-direction: column; gap: 28px; align-items: flex-start; }
+      .hero-ctas { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+      .hero-media { position: relative; }
+      .hero-media img { display: block; width: 100%; height: clamp(320px, 42vw, 540px); object-fit: cover; border-radius: 24px; }
+      .rating { position: absolute; left: -20px; bottom: 28px; display: flex; gap: 12px; align-items: center; padding: 14px 20px; background: #fff; color: var(--ink); border-radius: 18px; box-shadow: 0 18px 40px rgba(0,0,0,.35); }
+      .rating-n { font-family: var(--display); font-weight: 600; font-size: 32px; line-height: 1; }
+      .rating-t { display: flex; flex-direction: column; font-size: 13px; color: var(--muted); }
+      .stars { color: #b08500; letter-spacing: 2px; font-size: 15px; }
+
+      /* À propos */
+      .about .label { margin-top: 10px; }
+      .about { display: grid; grid-template-columns: 220px minmax(0, 1fr); align-items: start; gap: 32px; padding-top: clamp(72px, 9vw, 112px); padding-bottom: clamp(56px, 7vw, 88px); }
+      .statement { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3vw, 38px); line-height: 1.25; letter-spacing: -0.015em; }
+      .sign { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
+      .sign img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+      .sign span { display: flex; flex-direction: column; font-size: 14px; color: var(--muted); }
+      .sign strong { font-size: 16px; color: var(--ink); font-weight: 500; }
+
+      /* Bandeau défilant */
+      .ticker { overflow: hidden; background: var(--yellow); color: var(--ink); padding: 16px 0; }
+      .ticker-track { display: flex; width: max-content; animation: ticker 40s linear infinite; }
+      .ticker-group { display: flex; }
+      .ticker-item { display: inline-flex; align-items: center; gap: 10px; padding: 0 28px; font-family: var(--display); font-weight: 500; font-size: 18px; white-space: nowrap; }
+      @keyframes ticker { to { transform: translateX(-50%); } }
+
+      /* Sections sombres */
+      .dark { background: var(--ink); color: #fff; }
+      .head-center { text-align: center; max-width: 760px; margin: 0 auto 56px; }
+      .head-split { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px; }
+
+      /* Prestations */
+      .svc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+      .svc { padding: 28px; border: 1px solid var(--line-dark); border-radius: 24px; background: var(--ink-2); transition: border-color .2s; }
+      .svc:hover { border-color: var(--yellow); }
+      .svc-top { display: flex; justify-content: space-between; align-items: center; }
+      .svc-n { font-family: var(--display); font-size: 14px; color: #8a8a94; }
+      .svc-t { margin: 24px 0 12px; font-family: var(--display); font-weight: 500; font-size: 22px; letter-spacing: -0.01em; }
+      .svc ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; color: var(--muted-dark); font-size: 15px; }
+      .icon-ring { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 50%; border: 1px solid #3a3a42; color: var(--yellow); }
+      .icon-ring-dark { border-color: var(--line); color: var(--ink); background: #fff; }
+
+      /* Pourquoi */
+      .why-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 24px; background: #fff; }
+      .why { padding: 32px 28px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+      .why + .why { border-left: 1px solid var(--line); }
+      .why h3 { margin: 8px 0 0; font-family: var(--display); font-weight: 500; font-size: 20px; }
+      .why p { margin: 0; color: var(--muted); font-size: 15px; }
+
+      /* Bandeau tableau */
+      .band { display: flex; flex-wrap: wrap; gap: 28px; align-items: center; justify-content: space-between; padding: clamp(32px, 5vw, 56px); border-radius: 32px; background: var(--yellow); }
+      .band > div { flex: 1 1 480px; min-width: 0; }
+      .band-t { margin: 0 0 10px; font-family: var(--display); font-weight: 500; font-size: clamp(26px, 3vw, 36px); line-height: 1.12; letter-spacing: -0.02em; }
+      .band p { margin: 0; max-width: 680px; }
+
+      /* Étapes */
+      .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; text-align: center; }
+      .step-n { display: block; font-family: var(--display); font-weight: 300; font-size: clamp(64px, 8vw, 96px); line-height: 1; color: var(--ink); letter-spacing: -0.04em; }
+      .steps h3 { margin: 16px 0 8px; font-family: var(--display); font-weight: 500; font-size: 20px; }
+      .steps p { margin: 0 auto; max-width: 300px; color: var(--muted); font-size: 15px; }
+
+      /* Avis */
+      .score { display: flex; align-items: center; gap: 14px; margin: 0; color: var(--muted-dark); font-size: 14px; }
+      .score .stars { color: var(--yellow); }
+      .score-n { font-family: var(--display); font-weight: 300; font-size: 56px; line-height: 1; color: #fff; }
+      .rev-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+      .rev { margin: 0; padding: 32px; border-radius: 24px; background: var(--ink-2); border: 1px solid var(--line-dark); display: flex; flex-direction: column; gap: 18px; }
+      .quote { color: var(--yellow); }
+      .rev p { margin: 0; flex-grow: 1; font-family: var(--display); font-weight: 300; font-size: 19px; line-height: 1.45; color: #ededf0; }
+      .rev footer { font-size: 14px; color: var(--muted-dark); }
+      .rev footer strong { color: #fff; font-weight: 500; }
+
+      /* Zone */
+      .zone { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: end; }
+      .towns { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+      .towns li { padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px; background: #fff; font-size: 15px; }
+      .brands-t { margin: 0 0 14px; font-size: 14px; color: var(--muted); }
+      .brands { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+      .brands li { display: flex; align-items: center; justify-content: center; min-height: 88px; padding: 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-family: var(--display); font-weight: 500; font-size: 17px; color: #3a3a42; text-align: center; background: #fff; }
+
+      /* FAQ */
+      .faq-wrap { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 56px; padding-top: 0; }
+      .faq-btn { margin-top: 32px; }
+      .faq details { border-bottom: 1px solid var(--line); }
+      .faq details:first-child { border-top: 1px solid var(--line); }
+      .faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; cursor: pointer; list-style: none; font-family: var(--display); font-weight: 500; font-size: 19px; }
+      .faq summary::-webkit-details-marker { display: none; }
+      .plus { position: relative; flex: none; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); background: #fff; }
+      .plus::before, .plus::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 1.5px; background: var(--ink); transform: translate(-50%, -50%); }
+      .plus::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform .2s; }
+      details[open] .plus::after { transform: translate(-50%, -50%) rotate(0deg); }
+      .faq details p { margin: 0 0 22px; max-width: 620px; color: var(--muted); }
+
+      /* Contact */
+      .contact { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 48px; padding: clamp(28px, 5vw, 64px); border-radius: 32px; background: var(--ink); color: #fff; }
+      .contact dl { margin: 32px 0 0; display: flex; flex-direction: column; gap: 14px; }
+      .contact dl div { display: flex; gap: 16px; flex-wrap: wrap; padding-bottom: 14px; border-bottom: 1px solid var(--line-dark); }
+      .contact dt { width: 96px; color: var(--muted-dark); font-size: 14px; padding-top: 2px; }
+      .contact dd { margin: 0; font-weight: 500; flex: 1; min-width: 160px; }
+      .masked { white-space: nowrap; }
+      .blur { filter: blur(5px); user-select: none; margin-left: 1px; }
+      .form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 28px; border-radius: 24px; background: #fff; color: var(--ink); }
+      .form label { display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 500; }
+      .form input, .form select, .form textarea { font: inherit; font-weight: 400; font-size: 16px; padding: 13px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--cream); color: var(--ink); }
+      .form textarea { resize: vertical; }
+      .full { grid-column: 1 / -1; }
+      .note { margin: 0; font-size: 14px; color: var(--muted); }
+
+      /* Footer */
+      .ftr { background: var(--ink); color: var(--muted-dark); margin-top: clamp(72px, 9vw, 112px); overflow: hidden; }
+      .ftr-big { white-space: nowrap; font-family: var(--display); font-weight: 500; font-size: clamp(48px, 9vw, 120px); letter-spacing: -0.03em; line-height: 1; padding: 48px 0 40px; color: transparent; -webkit-text-stroke: 1px #4a4a52; }
+      .ftr-in { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid var(--line-dark); }
+      .ftr-brand img { height: 48px; width: auto; display: block; border-radius: 10px; }
+      .ftr-brand p { margin: 18px 0 0; font-size: 15px; max-width: 320px; }
+      .ftr-t { margin: 0 0 14px; color: #fff; font-family: var(--display); font-weight: 500; font-size: 17px; }
+      .ftr ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+      .me .ftr a { text-decoration: none; color: var(--muted-dark); }
+      .me .ftr a:hover { color: var(--yellow); }
+      .ftr-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 24px; padding-bottom: 28px; font-size: 14px; }
+
+      /* Bandeau + bouton DOLSTA */
+      .demo { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: center; padding: 10px 16px; background: #4c4cf0; color: #fff; font: 14px/1.4 'DM Sans', system-ui, sans-serif; text-align: center; }
+      .demo a { color: #fff; font-weight: 700; text-underline-offset: 3px; }
+      .float { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: inline-flex; gap: 6px; align-items: center; min-height: 48px; padding: 0 20px; border-radius: 999px; background: #4c4cf0; color: #fff; text-decoration: none; font: 15px 'DM Sans', system-ui, sans-serif; box-shadow: 0 12px 30px rgba(20,20,60,.35); }
+      .float:hover { filter: brightness(.92); }
+
+      :focus-visible { outline: 3px solid #4c4cf0; outline-offset: 3px; }
+      @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } .btn { transition: none; } }
+
+      /* Tablette */
+      @media (max-width: 1000px) {
+        .hdr-nav { display: none; }
+        .hdr-in { grid-template-columns: auto 1fr; }
+        .hdr-logo { order: -1; }
+        .hero { grid-template-columns: 1fr; }
+        .rating { left: 16px; }
+        .about { grid-template-columns: 1fr; gap: 8px; }
+        .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .why:nth-child(3) { border-left: 0; }
+        .why:nth-child(n+3) { border-top: 1px solid var(--line); }
+        .rev-grid { grid-template-columns: 1fr; }
+        .zone, .faq-wrap, .contact { grid-template-columns: 1fr; }
+        .ftr-in { grid-template-columns: 1fr 1fr; }
+      }
+      /* Mobile */
+      @media (max-width: 600px) {
+        .wrap { padding-left: 16px; padding-right: 16px; }
+        .hdr-logo img { height: 40px; }
+        .hero { border-radius: 24px; padding: 28px 20px; }
+        .hero-ctas .btn { width: 100%; }
+        .svc-grid, .why-grid, .steps { grid-template-columns: 1fr; }
+        .why + .why { border-left: 0; border-top: 1px solid var(--line); }
+        .brands { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .form { grid-template-columns: 1fr; padding: 20px; }
+        .contact { border-radius: 24px; padding: 28px 20px; }
+        .ftr-in { grid-template-columns: 1fr; }
+        .float { left: 16px; right: 16px; justify-content: center; }
       }
     </style>
   </body>
