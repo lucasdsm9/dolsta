@@ -34,7 +34,7 @@ const why = [
 const steps = [
   {
     title: 'On a préparé votre maquette',
-    text: 'À partir de vos informations publiques (page Facebook, fiche Google) : prestations, photos, avis. Vous ne nous devez rien pour cette maquette.',
+    text: 'À partir de vos informations publiques (page Facebook, fiche Google) : prestations, photos, avis. Vous ne nous devez rien pour cette maquette, et si vous ne souhaitez pas donner suite, elle sera supprimée dans un délai de 7 jours.',
   },
   {
     title: 'Vous nous dites ce qui vous plaît',
@@ -91,10 +91,14 @@ const check = 'M20 6 9 17l-5-5';
             </a>
             <a href="#tarifs" data-open-tab="tarifs" class="inline-flex min-h-12 items-center rounded-full border border-[#D9D9E0] bg-white px-6 text-[15px] font-medium text-ink no-underline transition hover:bg-[#F4F4F7]">Voir les tarifs</a>
           </div>
+          <p class="mt-6 flex max-w-[520px] gap-2.5 text-sm leading-relaxed text-muted">
+            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <span>Sans engagement : si vous ne souhaitez pas donner suite, la maquette sera supprimée dans un délai de 7 jours.</span>
+          </p>
         </div>
 
         <!-- Aperçu cliquable : navigateur + téléphone -->
-        <a href={p.siteUrl} class="group relative block pb-10 no-underline" aria-label={`Ouvrir l'aperçu du site de ${p.business}`}>
+        <a href={p.siteUrl} class="group relative block pb-6 no-underline sm:pb-10" aria-label={`Ouvrir l'aperçu du site de ${p.business}`}>
           <div class="overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_30px_70px_rgba(30,30,60,0.18)] transition-transform duration-500 group-hover:-translate-y-1">
             <div class="flex items-center gap-3 border-b border-line bg-[#F4F4F7] px-4 py-3">
               <span class="flex gap-1.5" aria-hidden="true"><span class="h-2.5 w-2.5 rounded-full bg-[#FF5F57]"></span><span class="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]"></span><span class="h-2.5 w-2.5 rounded-full bg-[#28C840]"></span></span>
