@@ -1,0 +1,8 @@
+---
+// Logo officiel Martel Électricité, détouré (fond transparent, sans numéro de téléphone)
+// à partir de la bannière du client. Fichier : public/martel-elec/img/logo-martel.webp
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+---
+
+<img class={cls} src="/martel-elec/img/logo-martel.webp" alt="Martel Électricité" width="913" height="395" />
